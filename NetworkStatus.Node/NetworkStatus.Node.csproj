@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetworkStatus\NetworkStatus.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+    <Folder Include="Status\Service\PiHole\" />
+    <Folder Include="Status\Service\Transmission\" />
+    <Folder Include="Status\Service\Plex\" />
+  </ItemGroup>
+
+</Project>
