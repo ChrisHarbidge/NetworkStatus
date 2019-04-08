@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
-using System.Linq;
 
-namespace NetworkStatus.Node.Status
+namespace NetworkStatus.Node.Status.Device.Cpu
 {
     class CpuStatus
     {
-        public double CurrentCpuUsage()
+        public double CurrentCpuUsagePercentage()
         {
             var currentProcess = Process.GetCurrentProcess();
             var cpu = currentProcess.TotalProcessorTime;
@@ -38,7 +35,7 @@ namespace NetworkStatus.Node.Status
             timer.Stop();
 
 
-            var result = (runningTotal / timer.ElapsedMilliseconds) * 100;
+            var result = runningTotal / timer.ElapsedMilliseconds * 100;
 
 
             //Process.GetProcesses().ToList().ForEach(process => 

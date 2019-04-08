@@ -1,5 +1,3 @@
-using System;
-
 namespace NetworkStatus.Models
 {
     public class ErrorViewModel

@@ -1,4 +1,4 @@
-﻿using NetworkStatus.Node.Status;
+﻿using NetworkStatus.Node.Status.Device.Cpu;
 using System;
 
 namespace NetworkStatus.Node
@@ -12,7 +12,7 @@ namespace NetworkStatus.Node
 
             var cpuStatus = new CpuStatus();
 
-            Console.WriteLine($"Cpu usage: {cpuStatus.CurrentCpuUsage()}");
+            //Console.WriteLine($"Cpu usage: {cpuStatus.CurrentCpuUsage()}");
 
             Console.ReadLine();
 

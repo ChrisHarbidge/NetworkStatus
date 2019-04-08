@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace NetworkStatus.Node.Status.Network
+namespace NetworkStatus.Node.Status.Network.External
 {
     class ExternalIPAddressFetcher
     {
@@ -21,7 +17,7 @@ namespace NetworkStatus.Node.Status.Network
                     {
                         var data = content.ReadAsStringAsync().Result;
 
-                        return  data;
+                        return data;
                     }
                 }
             }

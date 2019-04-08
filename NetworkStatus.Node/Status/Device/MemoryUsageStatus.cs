@@ -1,20 +1,20 @@
 ﻿using NetworkStatus.Node.Dtos;
 using System.IO;
 using System.Linq;
-using System;
+using NetworkStatus.Node.Mappers;
 
-namespace NetworkStatus.Node.Status
+namespace NetworkStatus.Node.Status.Device
 {
     class MemoryUsageStatus
     {
+        private RamUsageMapper _mapper = new RamUsageMapper();
+
 
         public RamUsageDto GetRamUsage()
         {
-
             var memInfo = File.ReadAllLines("/proc/meminfo").ToList();
 
-
-            throw new Exception();
+            return _mapper.Map(memInfo);
         }
     }
 }

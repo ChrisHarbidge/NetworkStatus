@@ -10,10 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\" />
-    <Folder Include="Status\Service\PiHole\" />
-    <Folder Include="Status\Service\Transmission\" />
-    <Folder Include="Status\Service\Plex\" />
+    <None Update="Resources\NordVpnIpAddresses.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

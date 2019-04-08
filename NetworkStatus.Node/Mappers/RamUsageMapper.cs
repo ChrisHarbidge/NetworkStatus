@@ -1,4 +1,6 @@
 ﻿using NetworkStatus.Node.Dtos;
+using NetworkStatus.Node.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -12,13 +14,41 @@ namespace NetworkStatus.Node.Mappers
 
         public RamUsageDto Map(List<string> outputLines)
         {
-            var memTotalLine = outputLines.First(line => line.Contains(TotalMemoryKey));
+            if (outputLines == null)
+            {
+                throw new RamUsageReadingException($"Null output lines provided");
+            }
 
-            var totalMemory = ParseKilabytesValue(memTotalLine);
+            if (outputLines.Count < 2)
+            {
+                throw new RamUsageReadingException($"Invalid memory usage output from host: {string.Join("\r\n", outputLines.ToArray())}");
+            }
 
-            var freeMemoryLine = outputLines.First(line => line.Contains(FreeMemoryKey));
+            uint totalMemory;
+            uint freeMemory;
 
-            var freeMemory = ParseKilabytesValue(freeMemoryLine);
+            try
+            {
+                var memTotalLine = outputLines.First(line => line.Contains(TotalMemoryKey));
+
+                totalMemory = ParseKilabytesValue(memTotalLine);
+            }
+            catch (Exception ex)
+            {
+                throw new RamUsageReadingException($"Error reading total memory: {ex.Message}");
+            }
+
+
+            try
+            {
+                var freeMemoryLine = outputLines.First(line => line.Contains(FreeMemoryKey));
+
+                freeMemory = ParseKilabytesValue(freeMemoryLine);
+            }
+            catch (Exception ex)
+            {
+                throw new RamUsageReadingException($"Error reading free memory: {ex.Message}");
+            }
 
             return new RamUsageDto
             {
@@ -33,8 +63,7 @@ namespace NetworkStatus.Node.Mappers
             var stringRepresentation = StripNonNumericCharacters(memoryLine);
             return uint.Parse(stringRepresentation);
         }
-
-
+        
         private string StripNonNumericCharacters(string stringToStrip)
         {
             return Regex.Match(stringToStrip, @"\d+").Value;
