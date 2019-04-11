@@ -1,4 +1,4 @@
-﻿using NetworkStatus.Node.Status.Network.Performance;
+﻿using NetworkStatus.Node.Status.Device.Network.Performance;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

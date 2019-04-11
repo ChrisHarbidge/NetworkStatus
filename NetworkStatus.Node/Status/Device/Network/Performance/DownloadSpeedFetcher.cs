@@ -4,11 +4,11 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetworkStatus.Node.Status.Network.Performance
+namespace NetworkStatus.Node.Status.Device.Network.Performance
 {
     public class DownloadSpeedFetcher
     {
-        public async Task<string> GetDownloadSpeedMegabytes()
+        public async Task<DownloadSpeed> GetDownloadSpeedMegabytes()
         {
             var watch = new Stopwatch();
 
@@ -24,7 +24,7 @@ namespace NetworkStatus.Node.Status.Network.Performance
 
             var speed = data.LongLength / watch.Elapsed.TotalSeconds;
 
-            return (speed / 1000000).ToString();
+            return new DownloadSpeed { Speed = speed / 1000000 };
         }
     }
 }

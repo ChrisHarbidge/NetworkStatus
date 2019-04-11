@@ -7,7 +7,7 @@ namespace NetworkStatus.Node.Status.Service
     {
         public bool ServiceIsRunning(ILinuxService service)
         {
-            if (File.Exists(service.ProcessIdFolder()) == false)
+            if (Directory.Exists(service.ProcessIdFolder()) == false)
             {
                 throw new ServiceNotInstalledException(service.ServiceName());
             }

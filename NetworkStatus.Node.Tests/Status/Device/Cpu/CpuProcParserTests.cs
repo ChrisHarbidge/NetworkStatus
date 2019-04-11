@@ -28,5 +28,17 @@ namespace NetworkStatus.Node.Tests.Status.Device.Cpu
 
         }
 
+        [Test]
+        public void ProcParsesRouglyTenPercentCorrectly()
+        {
+            var firstLine = "cpu  176178 0 325018 1371388583 369001 0 24532 0 0 0";
+            var secondLine = "cpu  176178 0 325019 1371389329 369002 0 24532 0 0 0";
+
+            var firstResult = _parser.CalculateCpuUsagePercentage(firstLine);
+            var secondResult = _parser.CalculateCpuUsagePercentage(secondLine);
+
+            Assert.LessOrEqual(secondResult, 100);
+        }
+
     }
 }

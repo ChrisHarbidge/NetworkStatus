@@ -1,4 +1,4 @@
-﻿using NetworkStatus.Node.Status.Network.Internal;
+﻿using NetworkStatus.Node.Status.Device.Network.Internal;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

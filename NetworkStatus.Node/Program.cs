@@ -1,5 +1,8 @@
-﻿using NetworkStatus.Node.Status.Device.Cpu;
+﻿using NetworkStatus.Node.Configuration;
+using NetworkStatus.Node.Node;
+using NetworkStatus.Node.Status.Device.Cpu;
 using System;
+using System.Threading;
 
 namespace NetworkStatus.Node
 {
@@ -7,12 +10,30 @@ namespace NetworkStatus.Node
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Starting node monitor...");
 
+            var configManager = new ConfigurationManager();
 
-            var cpuStatus = new CpuStatus();
+            var config = configManager.LoadConfiguration();
 
-            //Console.WriteLine($"Cpu usage: {cpuStatus.CurrentCpuUsage()}");
+            var node = new PiNode(config);
+
+            while (true)
+            {
+
+                try
+                {
+                    node.PrintStatuses();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error fetching statuses: {ex}");
+                }
+
+                Console.WriteLine($"Sleeping for 10 seconds");
+
+                Thread.Sleep(10000);
+            }
 
             Console.ReadLine();
 

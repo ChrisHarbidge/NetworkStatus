@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using NetworkStatus.Node.Mappers;
 
-namespace NetworkStatus.Node.Status.Device
+namespace NetworkStatus.Node.Status.Device.Memory
 {
     class MemoryUsageStatus
     {

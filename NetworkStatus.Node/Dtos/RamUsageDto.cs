@@ -12,12 +12,17 @@
             }
         }
 
-        public uint PercentageUsed
+        public double PercentageUsed
         {
             get
             {
-                return (Used % Total) * 100;
+                return ((Used * 1.0) /  Total) * 100;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"Free: {Free} Total: {Total} Used: {Used} PercentageUsed: {PercentageUsed}";
         }
     }
 }

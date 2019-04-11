@@ -1,6 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using NetworkStatus.Node.Status.Device.Network.External;
+using System.Threading.Tasks;
 
-namespace NetworkStatus.Node.Status.Network.External
+namespace NetworkStatus.Node.Status.Device.Network.External
 {
     public class ExternalIpStatusFetcher
     {

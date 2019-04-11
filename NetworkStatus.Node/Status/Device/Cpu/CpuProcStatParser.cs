@@ -13,10 +13,10 @@ namespace NetworkStatus.Node.Status.Device.Cpu
         // Deltas required for accurate readings, see above
 
 
-        private const int IDLE_TIME_INDEX = 4;
+        private const int IDLE_TIME_INDEX = 3;
 
-        private long previousIdleTime = long.MinValue;
-        private long previousTotalTime = long.MinValue;
+        private double previousIdleTime = 0.0;
+        private long previousTotalTime = 0;
 
         public double CalculateCpuUsagePercentage(string procFirstLine)
         {
@@ -32,10 +32,14 @@ namespace NetworkStatus.Node.Status.Device.Cpu
             });
 
             var totalTime = numericalValues.Sum();
+           
 
-            var idleTime = numericalValues.ElementAt(4) * 1.0;
+            var idleTime = numericalValues.ElementAt(IDLE_TIME_INDEX) * 1.0;
+            
+            double percentageSpentIdle = (idleTime - previousIdleTime) / (totalTime - previousTotalTime);
 
-            double percentageSpentIdle = idleTime / totalTime;
+            previousTotalTime = totalTime;
+            previousIdleTime = idleTime;
 
             var workingTime = 1 - percentageSpentIdle;
 

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace NetworkStatus.Node.Status.Network.External
+namespace NetworkStatus.Node.Status.Device.Network.External
 {
     class ExternalIpAddressVpnResolver
     {

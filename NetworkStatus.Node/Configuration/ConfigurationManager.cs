@@ -10,7 +10,8 @@ namespace NetworkStatus.Node.Configuration
             {
                 ServiceNames = new List<string>()
                 {
-                    "Plex"
+                    "Plex",
+                    "Transmission"
                 }
             };
         }

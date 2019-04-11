@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace NetworkStatus.Node.Status.Network.External
+namespace NetworkStatus.Node.Status.Device.Network.External
 {
     class ExternalIPAddressFetcher
     {
