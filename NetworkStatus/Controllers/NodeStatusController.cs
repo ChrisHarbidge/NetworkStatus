@@ -80,7 +80,7 @@ namespace NetworkStatus.Controllers
             return CreatedAtAction("GetNodeStatus", new { id = nodeStatus.Id }, nodeStatus);
         }
 
-        // DELETE: api/NodeStatus/5aeereeeede
+        // DELETE: api/NodeStatus/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<NodeStatus>> DeleteNodeStatus(int id)
         {

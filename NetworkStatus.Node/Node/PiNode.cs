@@ -7,6 +7,7 @@ using NetworkStatus.Node.Status.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace NetworkStatus.Node.Node
 {
@@ -17,22 +18,21 @@ namespace NetworkStatus.Node.Node
         private readonly NodeConfiguration _configuration;
         private readonly ServiceMapper _serviceMapper = new ServiceMapper();
         private readonly LinuxServiceStatusFetcher _serviceStatusFetcher = new LinuxServiceStatusFetcher();
-        private readonly HardwareStatus _hardwareStatus = new HardwareStatus();
-        private readonly NetworkStatusService _networkStatusService = new NetworkStatusService();
+        private readonly IHardwareStatusService _hardwareStatusService;
 
-        public PiNode(NodeConfiguration configuration)
+        public PiNode(NodeConfiguration configuration, IHardwareStatusService hardwareStatusService)
         {
+            _configuration = configuration;
             _services.AddRange(configuration.ServiceNames.Select(_serviceMapper.Resolve));
+            _hardwareStatusService = hardwareStatusService;
         }
 
         public void PrintStatuses()
         {
-            Console.WriteLine($"{_hardwareStatus.GetHardwareStatusString()}");
+            Console.WriteLine($"{_hardwareStatusService.GetHardwareStatus().ToString()}");
 
-            Console.WriteLine($"{_networkStatusService.GetNetworkStatus().ToString()}");
-
-            _services.ForEach(service => {
-
+            Parallel.ForEach(_services, (service) =>
+            {
                 var isRunning = false;
 
                 try
@@ -45,7 +45,6 @@ namespace NetworkStatus.Node.Node
                 }
 
                 Console.WriteLine($"Service {service.ServiceName()} is running: {isRunning}");
-                
             });
         }
 

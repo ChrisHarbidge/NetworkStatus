@@ -6,6 +6,7 @@ namespace NetworkStatus.Node.Configuration
     {
         public NodeConfiguration LoadConfiguration()
         {
+            // TODO: Load all of this from a config file
             return new NodeConfiguration
             {
                 ServiceNames = new List<string>()

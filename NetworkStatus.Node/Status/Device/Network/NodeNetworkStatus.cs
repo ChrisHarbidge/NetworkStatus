@@ -1,8 +1,6 @@
 ﻿using NetworkStatus.Node.Status.Device.Network.External;
 using NetworkStatus.Node.Status.Device.Network.Internal;
 using NetworkStatus.Node.Status.Device.Network.Performance;
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace NetworkStatus.Node.Status.Device.Network

@@ -1,26 +1,32 @@
-﻿using NetworkStatus.Node.Status.Device.Cpu;
-using NetworkStatus.Node.Status.Device.Memory;
+﻿using NetworkStatus.Node.Dtos;
+using NetworkStatus.Node.Status.Device.Cpu;
+using NetworkStatus.Node.Status.Device.MachineName;
+using NetworkStatus.Node.Status.Device.Network;
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace NetworkStatus.Node.Status.Device
 {
     class HardwareStatus
     {
-        private CpuStatus _cpuStatus = new CpuStatus();
-        private MachineName _machineName = new MachineName();
-        private MemoryUsageStatus _memoryUsageStatus = new MemoryUsageStatus();
+        public CpuStatus CpuStatus { get; set; }
+        public NodeMachineName Hostname { get; set; }
+        public RamUsageDto RamUsage { get; set; }
+        public NodeNetworkStatus NetworkStatus { get; set; }
 
-        public string GetHardwareStatusString()
+        public override string ToString()
         {
             var stringBuilder = new StringBuilder();
 
-            stringBuilder.AppendLine($"Machine Name: {_machineName.GetHostName()}");
-            stringBuilder.AppendLine($"Cpu usage: {_cpuStatus.CurrentCpuUsagePercentage()}%");
-            stringBuilder.AppendLine($"Memory Usage: {_memoryUsageStatus.GetRamUsage().ToString()}%");
+            stringBuilder.AppendLine($"Machine Name: {Hostname.Name}");
+            stringBuilder.AppendLine($"Cpu usage: {Math.Round(CpuStatus.CpuPercentageUsed, 2)}%");
+            stringBuilder.AppendLine($"Memory Usage: {RamUsage.PercentageUsed}%");
+            stringBuilder.AppendLine($"Network Status: {NetworkStatus.ToString()}");
 
             return stringBuilder.ToString();
         }
+
     }
 }
+
+

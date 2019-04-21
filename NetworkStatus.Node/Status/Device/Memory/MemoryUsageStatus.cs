@@ -5,10 +5,9 @@ using NetworkStatus.Node.Mappers;
 
 namespace NetworkStatus.Node.Status.Device.Memory
 {
-    class MemoryUsageStatus
+    class MemoryUsageStatusService : IMemoryUsageStatusService
     {
         private RamUsageMapper _mapper = new RamUsageMapper();
-
 
         public RamUsageDto GetRamUsage()
         {

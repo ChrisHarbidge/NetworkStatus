@@ -1,13 +1,11 @@
 ﻿using NetworkStatus.Node.Status.Device.Network.External;
 using NetworkStatus.Node.Status.Device.Network.Internal;
 using NetworkStatus.Node.Status.Device.Network.Performance;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace NetworkStatus.Node.Status.Device.Network
 {
-    class NetworkStatusService
+    class NetworkStatusService : INetworkStatusService
     {
         private readonly DownloadSpeedFetcher _downloadSpeedFetcher;
         private readonly InternalIpAddressFetcher _internalIpAddressFetcher;
@@ -22,13 +20,23 @@ namespace NetworkStatus.Node.Status.Device.Network
 
         public NodeNetworkStatus GetNetworkStatus()
         {
+            DownloadSpeed downloadSpeed = null;
+            ExternalIPStatus externalIpStatus = null;
+            InternalIpAddress internalIpAddress = null;
+
+            Task.WaitAll(new[] {
+
+                Task.Run(() => { downloadSpeed = _downloadSpeedFetcher.GetDownloadSpeedMegabytes().Result; }),
+                Task.Run(() => { externalIpStatus = _externalIpStatusFetcher.FetchExternalStatus().Result; }),
+
+            });
+
             return new NodeNetworkStatus
             {
-                DownloadSpeed = _downloadSpeedFetcher.GetDownloadSpeedMegabytes().Result,
-                ExternalStatus = _externalIpStatusFetcher.FetchExternalStatus().Result,
-                InternalpIpStatus = _internalIpAddressFetcher.GetInternalIpAddress()
+                DownloadSpeed = downloadSpeed,
+                ExternalStatus = externalIpStatus,
+                InternalpIpStatus = internalIpAddress
             };
         }
-
     }
 }

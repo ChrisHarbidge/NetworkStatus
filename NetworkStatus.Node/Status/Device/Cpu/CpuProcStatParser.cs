@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace NetworkStatus.Node.Status.Device.Cpu
 {
@@ -18,7 +16,7 @@ namespace NetworkStatus.Node.Status.Device.Cpu
         private double previousIdleTime = 0.0;
         private long previousTotalTime = 0;
 
-        public double CalculateCpuUsagePercentage(string procFirstLine)
+        public  double CalculateCpuUsagePercentage(string procFirstLine)
         {
             var split = procFirstLine.Split(" ").ToList();
 

@@ -1,8 +1,5 @@
 ﻿using NetworkStatus.Node.Status.Device.Network.Performance;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NetworkStatus.Node.Tests.Status.Network.Performance
 {
@@ -21,7 +18,7 @@ namespace NetworkStatus.Node.Tests.Status.Network.Performance
         {
             var result = _speedFetcher.GetDownloadSpeedMegabytes().Result;
 
-            Assert.True(result.Length > 0);
+            Assert.True(result.Speed > 0);
         }
     }
 }

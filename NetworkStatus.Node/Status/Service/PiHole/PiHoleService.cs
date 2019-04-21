@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NetworkStatus.Node.Status.Service.PiHole
+﻿namespace NetworkStatus.Node.Status.Service.PiHole
 {
     class PiHoleService : ILinuxService
     {

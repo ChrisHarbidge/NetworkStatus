@@ -1,8 +1,5 @@
 ﻿using NetworkStatus.Node.Status.Device.Network.Internal;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NetworkStatus.Node.Tests.Status.Network.Internal
 {

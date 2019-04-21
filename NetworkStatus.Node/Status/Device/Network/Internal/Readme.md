@@ -1,0 +1,1 @@
+﻿Internal IP Address is handled by the incoming request of the node server side for now, as the Dotnet Core mechanism seems unreliable (for now)

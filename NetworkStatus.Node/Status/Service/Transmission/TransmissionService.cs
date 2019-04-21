@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NetworkStatus.Node.Status.Service.Transmission
+﻿namespace NetworkStatus.Node.Status.Service.Transmission
 {
     class TransmissionService : ILinuxService
     {
