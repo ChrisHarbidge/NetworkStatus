@@ -13,7 +13,8 @@ namespace NetworkStatus.Node.Configuration
                 {
                     "Plex",
                     "Transmission"
-                }
+                },
+                ServerIpAddress = "192.168.0.13"
             };
         }
     }
