@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using NetworkStatus.Data;
 using NetworkStatus.Models;
+using System.Collections.ObjectModel;
 
 namespace NetworkStatus.Helpers
 {
@@ -25,7 +26,26 @@ namespace NetworkStatus.Helpers
                         NodeName = "Test Node",
                         RamUsage = 1.5m,
                         Temperature = 30.0m,
-                        TotalRam = 4
+                        TotalRam = 4,
+                        Network = new Models.NetworkStatus {
+                            DownloadSpeed = 1.0m,
+                            IsVpn = true,
+                            PrivateIpAddress = "192.168.0.30",
+                            PublicIpAddress = "1.1.1.1"
+                        },
+                        Services = new Collection<LinuxServiceStatus>()
+                        {
+                            new LinuxServiceStatus
+                            {
+                                IsRunning = true,
+                                ServiceName = "Test service"
+                            }
+                        },
+                        Storage = new StorageStatus
+                        {
+                            TotalStorageSpaceBytes = 10000000,
+                            UsedStorageSpaceBytes = 50000
+                        }
                     }
                 );
 

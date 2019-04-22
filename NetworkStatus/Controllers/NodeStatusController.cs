@@ -23,14 +23,22 @@ namespace NetworkStatus.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<NodeStatus>>> GetNodeStatus()
         {
-            return await _context.NodeStatus.ToListAsync();
+            return await _context.NodeStatus
+                .Include(node => node.Storage)
+                .Include(node => node.Network)
+                .Include(node => node.Services)
+                .ToListAsync();
         }
 
         // GET: api/NodeStatus/5
         [HttpGet("{id}")]
         public async Task<ActionResult<NodeStatus>> GetNodeStatus(int id)
         {
-            var nodeStatus = await _context.NodeStatus.FindAsync(id);
+            var nodeStatus = await _context.NodeStatus
+                .Include(node => node.Storage)
+                .Include(node => node.Network)
+                .Include(node => node.Services)
+                .SingleOrDefaultAsync(node => node.Id == id);
 
             if (nodeStatus == null)
             {
