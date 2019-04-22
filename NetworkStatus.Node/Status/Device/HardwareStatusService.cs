@@ -3,6 +3,8 @@ using NetworkStatus.Node.Status.Device.Cpu;
 using NetworkStatus.Node.Status.Device.MachineName;
 using NetworkStatus.Node.Status.Device.Memory;
 using NetworkStatus.Node.Status.Device.Network;
+using NetworkStatus.Node.Status.Device.Storage;
+using NetworkStatus.Node.Status.Device.Temperature;
 using System.Threading.Tasks;
 
 namespace NetworkStatus.Node.Status.Device
@@ -13,16 +15,24 @@ namespace NetworkStatus.Node.Status.Device
         private INodeMachineNameService _machineNameService;
         private IMemoryUsageStatusService _memoryUsageStatusService;
         private INetworkStatusService _networkStatusService;
+        private IHardwareTemperatureService _hardwareTemperatureService;
+        private IStorageSpaceService _storageSpaceService;
+
+        // TODO: Break this down, too many dependencies
 
         public HardwareStatusService(ICpuStatusService cpuStatusService, 
             INodeMachineNameService nodeMachineNameService,
             IMemoryUsageStatusService memoryUsageStatusService,
-            INetworkStatusService networkStatusService)
+            INetworkStatusService networkStatusService,
+            IHardwareTemperatureService hardwareTemperatureService,
+            IStorageSpaceService storageSpaceService)
         {
             _cpuStatusService = cpuStatusService;
             _machineNameService = nodeMachineNameService;
             _memoryUsageStatusService = memoryUsageStatusService;
             _networkStatusService = networkStatusService;
+            _hardwareTemperatureService = hardwareTemperatureService;
+            _storageSpaceService = storageSpaceService;
         }
 
         public HardwareStatus GetHardwareStatus()
@@ -31,12 +41,16 @@ namespace NetworkStatus.Node.Status.Device
             CpuStatus cpuStatus = null;
             RamUsageDto memoryStatus = null;
             NodeNetworkStatus networkStatus = null;
+            HardwareTemperature hardwareTemperature = null;
+            StorageStatus storageStatus = null;
 
             Task.WaitAll(new[] {
                 Task.Run(() => { machineName = _machineNameService.GetMachineName(); }),
                 Task.Run(() => { cpuStatus = _cpuStatusService.CurrentCpuStatus(); }),
                 Task.Run(() => { memoryStatus = _memoryUsageStatusService.GetRamUsage(); }),
                 Task.Run(() => { networkStatus = _networkStatusService.GetNetworkStatus(); }),
+                Task.Run(() => { hardwareTemperature = _hardwareTemperatureService.GetHardwareTemperature(); }),
+                Task.Run(() => { storageStatus = _storageSpaceService.GetStorageStatus(); }),
             });
 
 
@@ -45,7 +59,9 @@ namespace NetworkStatus.Node.Status.Device
                 CpuStatus = cpuStatus,
                 Hostname = machineName,
                 RamUsage = memoryStatus,
-                NetworkStatus = networkStatus
+                NetworkStatus = networkStatus,
+                Temparature = hardwareTemperature,
+                Storage = storageStatus
             };
         }
     }

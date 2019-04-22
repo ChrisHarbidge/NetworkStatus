@@ -4,12 +4,13 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <StartupObject>NetworkStatus.Node.Program</StartupObject>
+    <PreserveCompilationContext>false</PreserveCompilationContext>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="bin\Release\**" />
-    <EmbeddedResource Remove="bin\Release\**" />
-    <None Remove="bin\Release\**" />
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,10 +21,6 @@
     <None Update="Resources\NordVpnIpAddresses.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="bin\" />
   </ItemGroup>
 
 </Project>

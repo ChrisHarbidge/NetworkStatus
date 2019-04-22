@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NetworkStatus.Node.Status.Device.Network
 {
-    class NodeNetworkStatus
+    public class NodeNetworkStatus
     {
         public ExternalIPStatus ExternalStatus { get; set; }
         public InternalIpAddress InternalpIpStatus { get; set; }
@@ -16,7 +16,7 @@ namespace NetworkStatus.Node.Status.Device.Network
             var builder = new StringBuilder();
 
             builder.AppendLine($"External Status: {ExternalStatus.ToString()}");
-            builder.AppendLine($"Internal Status: {InternalpIpStatus.ToString()}");
+            //builder.AppendLine($"Internal Status: {InternalpIpStatus.ToString()}");
             builder.AppendLine($"Download Speed: {DownloadSpeed.ToString()}");
 
             return builder.ToString();

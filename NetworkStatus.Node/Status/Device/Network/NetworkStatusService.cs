@@ -11,6 +11,7 @@ namespace NetworkStatus.Node.Status.Device.Network
         private readonly InternalIpAddressFetcher _internalIpAddressFetcher;
         private readonly ExternalIpStatusFetcher _externalIpStatusFetcher;
 
+        // TODO: Dependency Injection
         public NetworkStatusService()
         {
             _downloadSpeedFetcher = new DownloadSpeedFetcher();
