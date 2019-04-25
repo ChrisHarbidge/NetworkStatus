@@ -1,5 +1,4 @@
-﻿using NetworkStatus.Node.Status.Device.Network.Internal;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 
 namespace NetworkStatus.Node.Status.Device.Network.Internal

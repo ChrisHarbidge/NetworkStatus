@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace NetworkStatus.Node.Status.Service
 {
-    class LinuxServicesStatus
+    public class LinuxServiceStatus
     {
-        public IEnumerable<LinuxServicesStatus> ServiceStatus { get; set; }
+       public string ServiceName { get; set; }
+       public bool IsRunning { get; set; }
+
+        public override string ToString()
+        {
+            return $"{ServiceName} is running: {IsRunning}";
+        }
     }
 }

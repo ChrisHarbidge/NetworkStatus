@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using NetworkStatus.Node.Status;
 using System.Threading.Tasks;
 
 namespace NetworkStatus.Node.Client.Api

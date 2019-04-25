@@ -1,11 +1,12 @@
-﻿namespace NetworkStatus.Node.Dtos
+﻿namespace NetworkStatus.Node.Status.Device.Memory
 {
-    public class RamUsageDto
+    public class RamUsage
     {
         public uint Total { get; set; }
         public uint Free { get; set; }
 
-        public uint Used {
+        public uint Used
+        {
             get
             {
                 return Total - Free;
@@ -16,7 +17,7 @@
         {
             get
             {
-                return ((Used * 1.0) /  Total) * 100;
+                return Used * 1.0 / Total * 100;
             }
         }
 

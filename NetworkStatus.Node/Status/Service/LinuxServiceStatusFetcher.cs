@@ -5,7 +5,7 @@ namespace NetworkStatus.Node.Status.Service
 {
     class LinuxServiceStatusFetcher
     {
-        public bool ServiceIsRunning(ILinuxService service)
+        public LinuxServiceStatus ServiceIsRunning(ILinuxService service)
         {
             if (Directory.Exists(service.ProcessIdFolder()) == false)
             {
@@ -13,7 +13,13 @@ namespace NetworkStatus.Node.Status.Service
             }
 
             // On linux, if a .pid exists, then the process must be running
-            return File.Exists(Path.Combine(service.ProcessIdFolder(), service.ProcessIdFileName()));
+            var processFileExists = File.Exists(Path.Combine(service.ProcessIdFolder(), service.ProcessIdFileName()));
+
+            return new LinuxServiceStatus
+            {
+                IsRunning = processFileExists,
+                ServiceName = service.ServiceName()
+            };
         }
     }
 }

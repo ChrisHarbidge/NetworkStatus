@@ -1,11 +1,12 @@
-﻿namespace NetworkStatus.Node.Dtos
+﻿using System;
+
+namespace NetworkStatus.Node.Dtos
 {
-    class NetworkStatusDto
+    public class NetworkStatusDto
     {
-        public string ExternalIpAddress { get; set; }
-        public bool IsVpnAddress { get; set; }
-        public string InternalIpAddress { get; set; }
-        public decimal DownloadSpeed { get; set; }
-        public decimal UploadSpeed { get; set; }
+        public string PublicIpAddress { get; set; }
+        public bool IsVpn { get; set; }
+        public string PrivateIpAddress { get; set; }
+        public Decimal DownloadSpeed { get; set; }
     }
 }

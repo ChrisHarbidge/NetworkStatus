@@ -1,5 +1,4 @@
-﻿using NetworkStatus.Node.Dtos;
-using NetworkStatus.Node.Status.Device.Cpu;
+﻿using NetworkStatus.Node.Status.Device.Cpu;
 using NetworkStatus.Node.Status.Device.MachineName;
 using NetworkStatus.Node.Status.Device.Memory;
 using NetworkStatus.Node.Status.Device.Network;
@@ -39,7 +38,7 @@ namespace NetworkStatus.Node.Status.Device
         {
             NodeMachineName machineName = null;
             CpuStatus cpuStatus = null;
-            RamUsageDto memoryStatus = null;
+            RamUsage memoryStatus = null;
             NodeNetworkStatus networkStatus = null;
             HardwareTemperature hardwareTemperature = null;
             StorageStatus storageStatus = null;

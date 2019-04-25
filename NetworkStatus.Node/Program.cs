@@ -1,8 +1,11 @@
-﻿using NetworkStatus.Node.Configuration;
+﻿using NetworkStatus.Node.Client.Api;
+using NetworkStatus.Node.Configuration;
 using NetworkStatus.Node.Node;
 using NetworkStatus.Node.Status.Device;
 using System;
+using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace NetworkStatus.Node
 {
@@ -16,7 +19,7 @@ namespace NetworkStatus.Node
 
             var serviceProvider = startup.GetServiceProvider();
 
-            var configManager = new ConfigurationManager();
+            var configManager = new NodeConfigurationManager();
 
             var config = configManager.LoadConfiguration();
 
@@ -24,17 +27,18 @@ namespace NetworkStatus.Node
 
             var node = new PiNode(config, hardwareStatusService);
 
+            var httpClient = new HttpClient();
+
+            var apiClient = new ApiClient(httpClient, config);
+
             while (true)
             {
 
-                try
-                {
-                    node.PrintStatuses();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error fetching statuses: {ex}");
-                }
+                var status = node.GetCurrentStatus();
+
+                Console.WriteLine(status.ToString());
+
+                Task.WaitAll(apiClient.SyncStatusAsync(status));
 
                 Console.WriteLine($"Sleeping for 10 seconds");
 

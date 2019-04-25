@@ -37,6 +37,8 @@ namespace NetworkStatus
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            // Use urls for access to local machine when integrating with external machines
+            .UseUrls("http://0.0.0.0:12345", "https://0.0.0.0:44331")
                 .UseStartup<Startup>();
     }
 }

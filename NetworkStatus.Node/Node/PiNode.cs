@@ -1,10 +1,11 @@
 ﻿using NetworkStatus.Node.Configuration;
 using NetworkStatus.Node.Dtos;
 using NetworkStatus.Node.Mappers;
+using NetworkStatus.Node.Status;
 using NetworkStatus.Node.Status.Device;
-using NetworkStatus.Node.Status.Device.Network;
 using NetworkStatus.Node.Status.Service;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,24 +28,48 @@ namespace NetworkStatus.Node.Node
             _hardwareStatusService = hardwareStatusService;
         }
 
+        public NodeStatus GetCurrentStatus()
+        {
+
+            var hardwareStatus = _hardwareStatusService.GetHardwareStatus();
+            var servicesStatuses = new ConcurrentBag<LinuxServiceStatus>();
+
+            Parallel.ForEach(_services, service => {
+                try
+                {
+                    servicesStatuses.Add(_serviceStatusFetcher.ServiceIsRunning(service));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception with service {service.ServiceName()}: {ex.Message}");
+                }
+            });
+
+            return new NodeStatus
+            {
+                HardwareStatus = hardwareStatus,
+                ServicesStatus = servicesStatuses.ToList()
+            };
+
+        }
+
         public void PrintStatuses()
         {
             Console.WriteLine($"{_hardwareStatusService.GetHardwareStatus().ToString()}");
 
             Parallel.ForEach(_services, (service) =>
             {
-                var isRunning = false;
+                LinuxServiceStatus serviceStatus = null;
 
                 try
                 {
-                    isRunning = _serviceStatusFetcher.ServiceIsRunning(service);
+                    serviceStatus = _serviceStatusFetcher.ServiceIsRunning(service);
+                    Console.WriteLine($"Service {service.ServiceName()} is running: {serviceStatus.IsRunning}");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Exception: {ex.Message}");
+                    Console.WriteLine($"Exception with service {service.ServiceName()}: {ex.Message}");
                 }
-
-                Console.WriteLine($"Service {service.ServiceName()} is running: {isRunning}");
             });
         }
 

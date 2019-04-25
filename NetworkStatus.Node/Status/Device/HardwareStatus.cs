@@ -1,6 +1,6 @@
-﻿using NetworkStatus.Node.Dtos;
-using NetworkStatus.Node.Status.Device.Cpu;
+﻿using NetworkStatus.Node.Status.Device.Cpu;
 using NetworkStatus.Node.Status.Device.MachineName;
+using NetworkStatus.Node.Status.Device.Memory;
 using NetworkStatus.Node.Status.Device.Network;
 using NetworkStatus.Node.Status.Device.Storage;
 using NetworkStatus.Node.Status.Device.Temperature;
@@ -13,7 +13,7 @@ namespace NetworkStatus.Node.Status.Device
     {
         public CpuStatus CpuStatus { get; set; }
         public NodeMachineName Hostname { get; set; }
-        public RamUsageDto RamUsage { get; set; }
+        public RamUsage RamUsage { get; set; }
         public NodeNetworkStatus NetworkStatus { get; set; }
         public HardwareTemperature Temparature { get; set; }
         public StorageStatus Storage { get; set; }

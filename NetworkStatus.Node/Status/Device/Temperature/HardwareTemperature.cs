@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NetworkStatus.Node.Status.Device.Temperature
+﻿namespace NetworkStatus.Node.Status.Device.Temperature
 {
     public class HardwareTemperature
     {

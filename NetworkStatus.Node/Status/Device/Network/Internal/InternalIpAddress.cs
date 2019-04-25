@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NetworkStatus.Node.Status.Device.Network.Internal
+﻿namespace NetworkStatus.Node.Status.Device.Network.Internal
 {
     public class InternalIpAddress
     {

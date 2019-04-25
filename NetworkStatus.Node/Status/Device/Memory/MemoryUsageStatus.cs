@@ -1,5 +1,4 @@
-﻿using NetworkStatus.Node.Dtos;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using NetworkStatus.Node.Mappers;
 
@@ -9,7 +8,7 @@ namespace NetworkStatus.Node.Status.Device.Memory
     {
         private RamUsageMapper _mapper = new RamUsageMapper();
 
-        public RamUsageDto GetRamUsage()
+        public RamUsage GetRamUsage()
         {
             var memInfo = File.ReadAllLines("/proc/meminfo").ToList();
 

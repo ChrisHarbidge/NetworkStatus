@@ -1,0 +1,8 @@
+{
+  "ServerAddress": "http://192.168.0.11:12345",
+  "NodeId": 2,
+  "ServiceNames": [
+    "Transmission",
+    "Plex"
+  ]
+}

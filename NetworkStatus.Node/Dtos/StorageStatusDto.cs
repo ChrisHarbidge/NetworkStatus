@@ -1,8 +1,7 @@
-﻿namespace NetworkStatus.Models
+﻿namespace NetworkStatus.Node.Dtos
 {
-    public class StorageStatus
+    public class StorageStatusDto
     {
-        public int Id { get; set; }
         public long UsedStorageSpaceBytes { get; set; }
         public long TotalStorageSpaceBytes { get; set; }
     }

@@ -2,9 +2,10 @@
 
 namespace NetworkStatus.Node.Configuration
 {
-    class NodeConfiguration
+    public class NodeConfiguration
     {
         public List<string> ServiceNames { get; set; } = new List<string>();
-        public string ServerIpAddress { get; set; }
+        public string ServerAddress { get; set; }
+        public int NodeId { get; set; }
     }
 }

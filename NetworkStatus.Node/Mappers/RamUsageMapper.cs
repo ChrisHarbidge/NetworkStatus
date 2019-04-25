@@ -1,5 +1,5 @@
-﻿using NetworkStatus.Node.Dtos;
-using NetworkStatus.Node.Exceptions;
+﻿using NetworkStatus.Node.Exceptions;
+using NetworkStatus.Node.Status.Device.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace NetworkStatus.Node.Mappers
 
         private const string TotalMemoryKey = "MemTotal";
 
-        public RamUsageDto Map(List<string> outputLines)
+        public RamUsage Map(List<string> outputLines)
         {
             if (outputLines == null)
             {
@@ -63,7 +63,7 @@ namespace NetworkStatus.Node.Mappers
                 throw new RamUsageReadingException($"Error reading free memory: {ex.Message}");
             }
 
-            return new RamUsageDto
+            return new RamUsage
             {
                 Free = ToMegaBytes(freeMemory),
                 Total = ToMegaBytes(totalMemory)
