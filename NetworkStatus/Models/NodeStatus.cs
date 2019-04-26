@@ -10,9 +10,9 @@ namespace NetworkStatus.Models
 
         [DataType(DataType.DateTime)]
         public DateTime LastPinged { get; set; }
-        public HardwareStatusModel HardwareStatus { get; set; }
-        public NetworkStatus Network { get; set; }
-        public StorageStatus Storage { get; set; }
+        public ICollection<HardwareStatusModel> HardwareStatus { get; set; }
+        public ICollection<NetworkStatusModel> Network { get; set; }
+        public ICollection<StorageStatus> Storage { get; set; }
         public ICollection<LinuxServiceStatus> Services { get; set; }
 
     }

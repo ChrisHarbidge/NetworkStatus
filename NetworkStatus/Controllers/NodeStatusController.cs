@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetworkStatus.Data;
 using NetworkStatus.Models;
+using NetworkStatus.Services;
 
 namespace NetworkStatus.Controllers
 {
@@ -13,22 +14,19 @@ namespace NetworkStatus.Controllers
     [ApiController]
     public class NodeStatusController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
 
-        public NodeStatusController(ApplicationDbContext context)
+        private readonly INodeStatusService _nodeStatusService;
+
+        public NodeStatusController(INodeStatusService nodeStatusService)
         {
-            _context = context;
+            _nodeStatusService = nodeStatusService;
         }
 
         // GET: api/NodeStatus
         [HttpGet]
         public async Task<ActionResult<IEnumerable<NodeStatus>>> GetNodeStatus()
         {
-            return await _context.NodeStatus
-                .Include(node => node.Storage)
-                .Include(node => node.Network)
-                .Include(node => node.Services)
-                .ToListAsync();
+            return new JsonResult(await _nodeStatusService.Index());
         }
 
         // GET: api/NodeStatus/5

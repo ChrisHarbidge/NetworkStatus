@@ -5,6 +5,7 @@ using System.Linq;
 using NetworkStatus.Data;
 using NetworkStatus.Models;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace NetworkStatus.Helpers
 {
@@ -19,36 +20,53 @@ namespace NetworkStatus.Helpers
                     return;
                 }
 
+                var dateSent = DateTime.Now;
+
                 context.NodeStatus.Add(
-                    new NodeStatus {
-                        HardwareStatus = new HardwareStatusModel
+                    new NodeStatus
+                    {
+                        HardwareStatus = new Collection<HardwareStatusModel>()
                         {
-                            CpuUsage = 50.0m,
-                            RamUsage = 1.5m,
-                            Temperature = 30.0m,
-                            TotalRam = 4,
+                            new HardwareStatusModel
+                            {
+                                CpuUsage = 50.0m,
+                                RamUsage = 1.5m,
+                                Temperature = 30.0m,
+                                TotalRam = 4,
+                                DateSent = dateSent
+                            }
                         },
-                        LastPinged = DateTime.Now,
+                        LastPinged = dateSent,
                         NodeName = "Test Node",
-                        
-                        Network = new Models.NetworkStatus {
-                            DownloadSpeed = 1.0m,
-                            IsVpn = true,
-                            PrivateIpAddress = "192.168.0.30",
-                            PublicIpAddress = "1.1.1.1"
+
+                        Network = new Collection<Models.NetworkStatusModel>()
+                        {
+                            new Models.NetworkStatusModel
+                            {
+                                DownloadSpeed = 1.0m,
+                                IsVpn = true,
+                                PrivateIpAddress = "192.168.0.30",
+                                PublicIpAddress = "1.1.1.1",
+                                DateSent = dateSent
+                            }
                         },
                         Services = new Collection<LinuxServiceStatus>()
                         {
                             new LinuxServiceStatus
                             {
                                 IsRunning = true,
-                                ServiceName = "Test service"
+                                ServiceName = "Test service",
+                                DateSent = dateSent
                             }
                         },
-                        Storage = new StorageStatus
+                        Storage = new Collection<StorageStatus>()
                         {
-                            TotalStorageSpaceBytes = 10000000,
-                            UsedStorageSpaceBytes = 50000
+                            new StorageStatus
+                            {
+                                TotalStorageSpaceBytes = 10000000,
+                                UsedStorageSpaceBytes = 50000,
+                                DateSent = dateSent
+                            }
                         }
                     }
                 );

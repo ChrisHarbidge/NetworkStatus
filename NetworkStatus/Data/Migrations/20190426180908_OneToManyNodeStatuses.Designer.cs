@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetworkStatus.Data;
 
 namespace NetworkStatus.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190426180908_OneToManyNodeStatuses")]
+    partial class OneToManyNodeStatuses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,7 +232,7 @@ namespace NetworkStatus.Data.Migrations
                     b.ToTable("LinuxServiceStatus");
                 });
 
-            modelBuilder.Entity("NetworkStatus.Models.NetworkStatusModel", b =>
+            modelBuilder.Entity("NetworkStatus.Models.NetworkStatus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -252,7 +254,7 @@ namespace NetworkStatus.Data.Migrations
 
                     b.HasIndex("NodeStatusId");
 
-                    b.ToTable("NetworkStatusModel");
+                    b.ToTable("NetworkStatus");
                 });
 
             modelBuilder.Entity("NetworkStatus.Models.NodeStatus", b =>
@@ -350,7 +352,7 @@ namespace NetworkStatus.Data.Migrations
                         .HasForeignKey("NodeStatusId");
                 });
 
-            modelBuilder.Entity("NetworkStatus.Models.NetworkStatusModel", b =>
+            modelBuilder.Entity("NetworkStatus.Models.NetworkStatus", b =>
                 {
                     b.HasOne("NetworkStatus.Models.NodeStatus")
                         .WithMany("Network")
