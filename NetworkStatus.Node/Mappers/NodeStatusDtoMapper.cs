@@ -1,6 +1,7 @@
 ﻿using NetworkStatus.Node.Configuration;
 using NetworkStatus.Node.Dtos;
 using NetworkStatus.Node.Status;
+using NetworkStatus.Node.Status.Device;
 using NetworkStatus.Node.Status.Device.Network;
 using NetworkStatus.Node.Status.Device.Storage;
 using NetworkStatus.Node.Status.Service;
@@ -15,18 +16,27 @@ namespace NetworkStatus.Node.Mappers
             return new NodeStatusDto
             {
                 Id = configuration.NodeId,
-                CpuUsage = (decimal)status.HardwareStatus.CpuStatus.CpuPercentageUsed,
+                HardwareStatus = Map(status.HardwareStatus),
                 Network = Map(status.HardwareStatus.NetworkStatus),
                 NodeName = status.HardwareStatus.Hostname.Name,
                 Storage = Map(status.HardwareStatus.Storage),
-                RamUsage = status.HardwareStatus.RamUsage.Used,
-                TotalRam = status.HardwareStatus.RamUsage.Total,
-                Temperature = (decimal)status.HardwareStatus.Temparature.TemperatureDegreesCelcius(),
+                
                 Services = status.ServicesStatus.ToList().Select(service => Map(service)).ToList()
             };
         }
 
-        public NetworkStatusDto Map(NodeNetworkStatus status)
+        public HardwareStatusDto Map(HardwareStatus hardwareStatus)
+        {
+            return new HardwareStatusDto
+            {
+                CpuUsage = (decimal)hardwareStatus.CpuStatus.CpuPercentageUsed,
+                RamUsage = hardwareStatus.RamUsage.Used,
+                TotalRam = hardwareStatus.RamUsage.Total,
+                Temperature = (decimal)hardwareStatus.Temparature.TemperatureDegreesCelcius(),
+            };
+        }
+
+            public NetworkStatusDto Map(NodeNetworkStatus status)
         {
             return new NetworkStatusDto
             {

@@ -21,12 +21,16 @@ namespace NetworkStatus.Helpers
 
                 context.NodeStatus.Add(
                     new NodeStatus {
-                        CpuUsage = 50.0m,
+                        HardwareStatus = new HardwareStatusModel
+                        {
+                            CpuUsage = 50.0m,
+                            RamUsage = 1.5m,
+                            Temperature = 30.0m,
+                            TotalRam = 4,
+                        },
                         LastPinged = DateTime.Now,
                         NodeName = "Test Node",
-                        RamUsage = 1.5m,
-                        Temperature = 30.0m,
-                        TotalRam = 4,
+                        
                         Network = new Models.NetworkStatus {
                             DownloadSpeed = 1.0m,
                             IsVpn = true,

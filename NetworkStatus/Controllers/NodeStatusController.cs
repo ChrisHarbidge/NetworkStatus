@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -57,6 +58,8 @@ namespace NetworkStatus.Controllers
                 return BadRequest();
             }
 
+            nodeStatus.LastPinged = DateTime.Now;
+
             _context.Entry(nodeStatus).State = EntityState.Modified;
 
             try
@@ -75,7 +78,7 @@ namespace NetworkStatus.Controllers
                 }
             }
 
-            return NoContent();
+            return new OkResult();
         }
 
         // POST: api/NodeStatus
@@ -86,22 +89,6 @@ namespace NetworkStatus.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetNodeStatus", new { id = nodeStatus.Id }, nodeStatus);
-        }
-
-        // DELETE: api/NodeStatus/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<NodeStatus>> DeleteNodeStatus(int id)
-        {
-            var nodeStatus = await _context.NodeStatus.FindAsync(id);
-            if (nodeStatus == null)
-            {
-                return NotFound();
-            }
-
-            _context.NodeStatus.Remove(nodeStatus);
-            await _context.SaveChangesAsync();
-
-            return nodeStatus;
         }
 
         private bool NodeStatusExists(int id)
