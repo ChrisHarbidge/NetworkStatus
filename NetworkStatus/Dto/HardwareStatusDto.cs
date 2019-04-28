@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NetworkStatus.Models
+namespace NetworkStatus.Dto
 {
-    public class HardwareStatusModel
+    public class HardwareStatusDto
     {
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         public int NodeId { get; set; }
-        public NodeStatus Node { get; set; }
-
-
         public Decimal Temperature { get; set; }
         public Decimal CpuUsage { get; set; }
         public Decimal RamUsage { get; set; }

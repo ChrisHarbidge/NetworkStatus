@@ -17,34 +17,56 @@ namespace NetworkStatus.Repositories
             _context = context;
         }
 
-        public Task AddHardwareStatus(HardwareStatusModel hardwareStatus, int NodeId)
+        public async Task AddHardwareStatus(HardwareStatusModel hardwareStatus, int NodeId)
         {
-            throw new NotImplementedException();
+            hardwareStatus.NodeId = NodeId;
+
+            _context.HardwareStatus.Add(hardwareStatus);
+
+            await _context.SaveChangesAsync();
         }
 
-        public Task AddLinuxServiceStatuses(ICollection<LinuxServiceStatus> statuses, int NodeId)
+        public async Task AddLinuxServiceStatuses(ICollection<LinuxServiceStatus> statuses, int NodeId)
         {
-            throw new NotImplementedException();
+            statuses.ToList().ForEach(status => status.NodeId = NodeId);
+
+            _context.LinuxServiceStatus.AddRange(statuses);
+
+            await _context.SaveChangesAsync();
         }
 
-        public Task AddNetworkStatus(NetworkStatusModel networkStatus, int NodeId)
+        public async Task AddNetworkStatus(NetworkStatusModel networkStatus, int NodeId)
         {
-            throw new NotImplementedException();
+            networkStatus.NodeId = NodeId;
+
+            _context.NetworkStatus.Add(networkStatus);
+
+            await _context.SaveChangesAsync();
         }
 
-        public Task AddNodeStatus(NodeStatus status)
+        public async Task AddNodeStatus(NodeStatus status)
         {
-            throw new NotImplementedException();
+            _context.NodeStatus.Add(status);
+            await _context.SaveChangesAsync();
         }
 
-        public Task AddStorageStatus(StorageStatus storageStatus, int NodeId)
+        public async Task AddStorageStatus(StorageStatus storageStatus, int NodeId)
         {
-            throw new NotImplementedException();
+            storageStatus.NodeId = NodeId;
+
+            _context.StorageStatus.Add(storageStatus);
+
+            await _context.SaveChangesAsync();
         }
 
         public Task<NodeStatus> Get(int nodeId)
         {
-            throw new NotImplementedException();
+            return _context.NodeStatus
+                .Include(node => node.Storage)
+                .Include(node => node.Network)
+                .Include(node => node.Services)
+                .Include(node => node.HardwareStatus)
+                .SingleOrDefaultAsync(node => node.Id == nodeId);
         }
 
         public async Task<ICollection<NodeStatus>> Index()
@@ -53,7 +75,13 @@ namespace NetworkStatus.Repositories
                 .Include(node => node.Storage)
                 .Include(node => node.Network)
                 .Include(node => node.Services)
+                .Include(node => node.HardwareStatus)
                 .ToListAsync();
+        }
+
+        public bool NodeStatusExists(int id)
+        {
+            return _context.NodeStatus.Any(e => e.Id == id);
         }
     }
 }

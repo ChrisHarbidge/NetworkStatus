@@ -10,9 +10,9 @@ namespace NetworkStatus.Dto
     {
         public int Id { get; set; }
         public string NodeName { get; set; }
-        public HardwareStatusModel HardwareStatus { get; set; }
-        public Models.NetworkStatusModel Network { get; set; }
-        public StorageStatus Storage { get; set; }
-        public ICollection<LinuxServiceStatus> Services { get; set; }
+        public HardwareStatusDto HardwareStatus { get; set; }
+        public NetworkStatusDto Network { get; set; }
+        public StorageStatusDto Storage { get; set; }
+        public ICollection<LinuxServiceStatusDto> Services { get; set; }
     }
 }

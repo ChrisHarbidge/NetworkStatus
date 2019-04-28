@@ -1,4 +1,5 @@
 ﻿using NetworkStatus.Dto;
+using NetworkStatus.Dto.Response;
 using NetworkStatus.Models;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,12 @@ namespace NetworkStatus.Services
 {
     public interface INodeStatusService
     {
-        void UpdateNodeStatus(NodeStatusDto nodeStatus);
+        Task UpdateNodeStatus(NodeStatusDto nodeStatus);
 
-        Task<IEnumerable<NodeStatus>> Index();
-        Task<NodeStatus> Get(int nodeId);
+        Task AddNodeStatus(NodeStatusDto nodeStatus);
+
+        Task<IEnumerable<NodeStatusResponseDto>> Index();
+        Task<NodeStatusResponseDto> Get(int nodeId);
+        bool Exists(int nodeId);
     }
 }

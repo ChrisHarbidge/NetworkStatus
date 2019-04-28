@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetworkStatus.Data;
 
 namespace NetworkStatus.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190427140248_AddForeignKeys")]
+    partial class AddForeignKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -206,7 +208,7 @@ namespace NetworkStatus.Data.Migrations
 
                     b.HasIndex("NodeId");
 
-                    b.ToTable("HardwareStatus");
+                    b.ToTable("HardwareStatusModel");
                 });
 
             modelBuilder.Entity("NetworkStatus.Models.LinuxServiceStatus", b =>
@@ -252,7 +254,7 @@ namespace NetworkStatus.Data.Migrations
 
                     b.HasIndex("NodeId");
 
-                    b.ToTable("NetworkStatus");
+                    b.ToTable("NetworkStatusModel");
                 });
 
             modelBuilder.Entity("NetworkStatus.Models.NodeStatus", b =>

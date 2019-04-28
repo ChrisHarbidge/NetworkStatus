@@ -22,13 +22,17 @@ namespace NetworkStatus.Helpers
 
                 var dateSent = DateTime.Now;
 
+                var nodeId = 2;
+
                 context.NodeStatus.Add(
                     new NodeStatus
                     {
+                        //Id = nodeId,
                         HardwareStatus = new Collection<HardwareStatusModel>()
                         {
                             new HardwareStatusModel
                             {
+                                //NodeId = nodeId,
                                 CpuUsage = 50.0m,
                                 RamUsage = 1.5m,
                                 Temperature = 30.0m,
@@ -43,6 +47,7 @@ namespace NetworkStatus.Helpers
                         {
                             new Models.NetworkStatusModel
                             {
+                                //NodeId = nodeId,
                                 DownloadSpeed = 1.0m,
                                 IsVpn = true,
                                 PrivateIpAddress = "192.168.0.30",
@@ -54,6 +59,7 @@ namespace NetworkStatus.Helpers
                         {
                             new LinuxServiceStatus
                             {
+                                //NodeId = nodeId,
                                 IsRunning = true,
                                 ServiceName = "Test service",
                                 DateSent = dateSent
@@ -63,6 +69,7 @@ namespace NetworkStatus.Helpers
                         {
                             new StorageStatus
                             {
+                                //NodeId = nodeId,
                                 TotalStorageSpaceBytes = 10000000,
                                 UsedStorageSpaceBytes = 50000,
                                 DateSent = dateSent

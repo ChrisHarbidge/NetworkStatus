@@ -12,6 +12,8 @@ namespace NetworkStatus.Repositories
         Task<NodeStatus> Get(int nodeId);
         Task AddNodeStatus(NodeStatus status);
 
+        bool NodeStatusExists(int id);
+
         // TODO: Move these to their respective repositories
         Task AddNetworkStatus(NetworkStatusModel networkStatus, int NodeId);
         Task AddStorageStatus(StorageStatus storageStatus, int NodeId);

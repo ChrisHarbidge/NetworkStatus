@@ -1,15 +1,14 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace NetworkStatus.Models
+namespace NetworkStatus.Dto.Response
 {
-    public class StorageStatus
+    public class StorageStatusResponseDto
     {
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int NodeId { get; set; }
-        public NodeStatus Node { get; set; }
-
         public long UsedStorageSpaceBytes { get; set; }
         public long TotalStorageSpaceBytes { get; set; }
         public DateTime DateSent { get; set; }

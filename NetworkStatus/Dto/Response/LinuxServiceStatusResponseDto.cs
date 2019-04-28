@@ -1,15 +1,14 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace NetworkStatus.Models
+namespace NetworkStatus.Dto.Response
 {
-    public class LinuxServiceStatus
+    public class LinuxServiceStatusResponseDto
     {
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int NodeId { get; set; }
-        public NodeStatus Node { get; set; }
-
         public string ServiceName { get; set; }
         public bool IsRunning { get; set; }
         public DateTime DateSent { get; set; }

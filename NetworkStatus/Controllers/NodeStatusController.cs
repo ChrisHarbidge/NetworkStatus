@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetworkStatus.Data;
+using NetworkStatus.Dto;
+using NetworkStatus.Dto.Response;
 using NetworkStatus.Models;
 using NetworkStatus.Services;
+using Newtonsoft.Json;
 
 namespace NetworkStatus.Controllers
 {
@@ -24,20 +27,16 @@ namespace NetworkStatus.Controllers
 
         // GET: api/NodeStatus
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<NodeStatus>>> GetNodeStatus()
+        public async Task<ActionResult<IEnumerable<NodeStatusResponseDto>>> GetNodeStatus()
         {
             return new JsonResult(await _nodeStatusService.Index());
         }
 
         // GET: api/NodeStatus/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<NodeStatus>> GetNodeStatus(int id)
+        public async Task<ActionResult<NodeStatusResponseDto>> GetNodeStatus(int id)
         {
-            var nodeStatus = await _context.NodeStatus
-                .Include(node => node.Storage)
-                .Include(node => node.Network)
-                .Include(node => node.Services)
-                .SingleOrDefaultAsync(node => node.Id == id);
+            var nodeStatus = await _nodeStatusService.Get(id);
 
             if (nodeStatus == null)
             {
@@ -49,20 +48,16 @@ namespace NetworkStatus.Controllers
 
         // PUT: api/NodeStatus/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutNodeStatus(int id, NodeStatus nodeStatus)
+        public async Task<IActionResult> PutNodeStatus(int id, NodeStatusDto nodeStatus)
         {
             if (id != nodeStatus.Id)
             {
                 return BadRequest();
             }
 
-            nodeStatus.LastPinged = DateTime.Now;
-
-            _context.Entry(nodeStatus).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                 await _nodeStatusService.UpdateNodeStatus(nodeStatus);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -83,15 +78,15 @@ namespace NetworkStatus.Controllers
         [HttpPost]
         public async Task<ActionResult<NodeStatus>> PostNodeStatus(NodeStatus nodeStatus)
         {
-            _context.NodeStatus.Add(nodeStatus);
-            await _context.SaveChangesAsync();
+            //_context.NodeStatus.Add(nodeStatus);
+            //await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetNodeStatus", new { id = nodeStatus.Id }, nodeStatus);
         }
 
         private bool NodeStatusExists(int id)
         {
-            return _context.NodeStatus.Any(e => e.Id == id);
+            return _nodeStatusService.Exists(id);
         }
     }
 }

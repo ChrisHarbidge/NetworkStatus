@@ -10,6 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetworkStatus.Repositories;
 using NetworkStatus.Services;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using System.Buffers;
+using Newtonsoft.Json;
+using NetworkStatus.Mappers;
 
 namespace NetworkStatus
 {
@@ -44,10 +48,16 @@ namespace NetworkStatus
 
             services.AddScoped<INodeStatusService, NodeStatusService>();
 
-
-
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddScoped<IMapper, Mapper>();
+           
+            services.AddMvc(options => {
+                options.OutputFormatters.Clear();
+                options.OutputFormatters.Add(new JsonOutputFormatter(new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                    PreserveReferencesHandling = PreserveReferencesHandling.All
+                }, ArrayPool<char>.Shared));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +79,6 @@ namespace NetworkStatus
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            // TODO: Put this back
             if (!env.IsDevelopment())
             {
                 app.UseAuthentication();

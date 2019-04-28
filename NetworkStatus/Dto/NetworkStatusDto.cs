@@ -1,15 +1,13 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace NetworkStatus.Models
+namespace NetworkStatus.Dto
 {
-    public class NetworkStatusModel
+    public class NetworkStatusDto
     {
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         public int NodeId { get; set; }
-        public NodeStatus Node { get; set; }
-
         public string PublicIpAddress { get; set; }
         public bool IsVpn { get; set; }
         public string PrivateIpAddress { get; set; }
