@@ -76,10 +76,9 @@ namespace NetworkStatus.Controllers
 
         // POST: api/NodeStatus
         [HttpPost]
-        public async Task<ActionResult<NodeStatus>> PostNodeStatus(NodeStatus nodeStatus)
+        public async Task<ActionResult<NodeStatus>> PostNodeStatus(NodeStatusDto nodeStatus)
         {
-            //_context.NodeStatus.Add(nodeStatus);
-            //await _context.SaveChangesAsync();
+            await _nodeStatusService.AddNodeStatus(nodeStatus);
 
             return CreatedAtAction("GetNodeStatus", new { id = nodeStatus.Id }, nodeStatus);
         }
