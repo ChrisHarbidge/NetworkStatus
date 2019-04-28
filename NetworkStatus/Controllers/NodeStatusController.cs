@@ -55,22 +55,13 @@ namespace NetworkStatus.Controllers
                 return BadRequest();
             }
 
-            try
+            if (!NodeStatusExists(id))
             {
-                 await _nodeStatusService.UpdateNodeStatus(nodeStatus);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!NodeStatusExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
 
+            await _nodeStatusService.UpdateNodeStatus(nodeStatus);
+            
             return new OkResult();
         }
 
