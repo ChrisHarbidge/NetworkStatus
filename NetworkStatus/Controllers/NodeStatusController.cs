@@ -60,6 +60,10 @@ namespace NetworkStatus.Controllers
                 return NotFound();
             }
 
+            var remoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress;
+
+            nodeStatus.Network.PrivateIpAddress = remoteIpAddress.MapToIPv4().ToString();
+
             await _nodeStatusService.UpdateNodeStatus(nodeStatus);
             
             return new OkResult();
