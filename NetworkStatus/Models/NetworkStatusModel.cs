@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NetworkStatus.Models
@@ -14,6 +15,7 @@ namespace NetworkStatus.Models
         public bool IsVpn { get; set; }
         public string PrivateIpAddress { get; set; }
         public Decimal DownloadSpeed { get; set; }
+        [DataType(DataType.DateTime)]
         public DateTime DateSent { get; set; }
     }
 }

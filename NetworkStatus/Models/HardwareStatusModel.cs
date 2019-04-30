@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace NetworkStatus.Models
         public Decimal CpuUsage { get; set; }
         public Decimal RamUsage { get; set; }
         public Decimal TotalRam { get; set; }
+        [DataType(DataType.DateTime)]
         public DateTime DateSent { get; set; }
     }
 }

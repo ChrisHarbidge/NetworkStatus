@@ -12,12 +12,26 @@ namespace NetworkStatus.Services
 {
     public class NodeStatusService : INodeStatusService
     {
-        private INodeStatusRepository _nodeStatusRepository;
-        private IMapper _mapper;
+        private readonly INodeStatusRepository _nodeStatusRepository;
+        private readonly IHardwareStatusRepository _hardwareStatusRepository;
+        private readonly ILinuxServiceStatusRepository _linuxServiceStatusRepository;
+        private readonly INetworkStatusRepository _networkStatusRepository;
+        private readonly IStorageStatusRepository _storageStatusRepository;
 
-        public NodeStatusService(INodeStatusRepository nodeStatusRepository, IMapper mapper)
+        private readonly IMapper _mapper;
+
+        public NodeStatusService(INodeStatusRepository nodeStatusRepository, 
+            IHardwareStatusRepository hardwareStatusRepository,
+            ILinuxServiceStatusRepository linuxServiceStatusRepository,
+            INetworkStatusRepository networkStatusRepository,
+            IStorageStatusRepository storageStatusRepository,
+            IMapper mapper)
         {
             _nodeStatusRepository = nodeStatusRepository;
+            _hardwareStatusRepository = hardwareStatusRepository;
+            _linuxServiceStatusRepository = linuxServiceStatusRepository;
+            _networkStatusRepository = networkStatusRepository;
+            _storageStatusRepository = storageStatusRepository;
             _mapper = mapper;
         }
 
@@ -58,10 +72,10 @@ namespace NetworkStatus.Services
             var nodeId = nodeStatus.Id;
 
             await Task.WhenAll(
-            _nodeStatusRepository.AddHardwareStatus(_mapper.Map(hardwareStatus), nodeId),
-            _nodeStatusRepository.AddLinuxServiceStatuses(linuxServiceStatuses.Select(_mapper.Map).ToList(), nodeId),
-            _nodeStatusRepository.AddNetworkStatus(_mapper.Map(networkStatus), nodeId),
-            _nodeStatusRepository.AddStorageStatus(_mapper.Map(storageStatus), nodeId)
+            _hardwareStatusRepository.AddHardwareStatus(_mapper.Map(hardwareStatus), nodeId),
+            _linuxServiceStatusRepository.AddLinuxServiceStatuses(linuxServiceStatuses.Select(_mapper.Map).ToList(), nodeId),
+            _networkStatusRepository.AddNetworkStatus(_mapper.Map(networkStatus), nodeId),
+            _storageStatusRepository.AddStorageStatus(_mapper.Map(storageStatus), nodeId)
             );
         }
 

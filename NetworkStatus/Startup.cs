@@ -38,13 +38,17 @@ namespace NetworkStatus
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<INodeStatusRepository, NodeStatusRepository>();
+            services.AddScoped<IHardwareStatusRepository, HardwareStatusRepository>();
+            services.AddScoped<ILinuxServiceStatusRepository, LinuxServiceStatusRepository>();
+            services.AddScoped<INetworkStatusRepository, NetworkStatusRepository>();
+            services.AddScoped<IStorageStatusRepository, StorageStatusRepository>();
 
             services.AddScoped<INodeStatusService, NodeStatusService>();
 

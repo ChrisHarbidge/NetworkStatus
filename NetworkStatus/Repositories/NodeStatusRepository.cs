@@ -17,45 +17,9 @@ namespace NetworkStatus.Repositories
             _context = context;
         }
 
-        public async Task AddHardwareStatus(HardwareStatusModel hardwareStatus, int NodeId)
-        {
-            hardwareStatus.NodeId = NodeId;
-
-            _context.HardwareStatus.Add(hardwareStatus);
-
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task AddLinuxServiceStatuses(ICollection<LinuxServiceStatus> statuses, int NodeId)
-        {
-            statuses.ToList().ForEach(status => status.NodeId = NodeId);
-
-            _context.LinuxServiceStatus.AddRange(statuses);
-
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task AddNetworkStatus(NetworkStatusModel networkStatus, int NodeId)
-        {
-            networkStatus.NodeId = NodeId;
-
-            _context.NetworkStatus.Add(networkStatus);
-
-            await _context.SaveChangesAsync();
-        }
-
         public async Task AddNodeStatus(NodeStatus status)
         {
             _context.NodeStatus.Add(status);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task AddStorageStatus(StorageStatus storageStatus, int NodeId)
-        {
-            storageStatus.NodeId = NodeId;
-
-            _context.StorageStatus.Add(storageStatus);
-
             await _context.SaveChangesAsync();
         }
 

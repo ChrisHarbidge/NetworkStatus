@@ -13,11 +13,5 @@ namespace NetworkStatus.Repositories
         Task AddNodeStatus(NodeStatus status);
 
         bool NodeStatusExists(int id);
-
-        // TODO: Move these to their respective repositories
-        Task AddNetworkStatus(NetworkStatusModel networkStatus, int NodeId);
-        Task AddStorageStatus(StorageStatus storageStatus, int NodeId);
-        Task AddHardwareStatus(HardwareStatusModel hardwareStatus, int NodeId);
-        Task AddLinuxServiceStatuses(ICollection<LinuxServiceStatus> statuses, int NodeId);
     }
 }
