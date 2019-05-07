@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using NetworkStatus.Data;
 using NetworkStatus.Models;
 
@@ -25,9 +26,9 @@ namespace NetworkStatus.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task<ICollection<NetworkStatusModel>> GetStatusesForNode(int nodeId)
+        public async Task<ICollection<NetworkStatusModel>> GetStatusesForNode(int nodeId)
         {
-            throw new NotImplementedException();
+            return await _context.NetworkStatus.Where(status => status.NodeId == nodeId).ToListAsync();
         }
 
         public Task<ICollection<NetworkStatusModel>> Index()
