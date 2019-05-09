@@ -3,19 +3,47 @@
     ViewData["Title"] = "Index";
 }
 
+<head>
+    <style>
+        .statChart {
+            width: 50%;
+        }
+        .leftChart {
+            width: 50%;
+            display: inline-block;
+            float: left;
+        }
+        .rightChart {
+            width: 50%;
+            display: block;
+            float: right;
+        }
+
+    </style>
+
+</head>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <h1>Statistics Dashboard</h1>
 
 <div>
-    Ram Usage:
-    @await Component.InvokeAsync("RamUsage", new { nodeId = 2 })
-    Cpu Usage:
-    @await Component.InvokeAsync("CpuUsage", new { nodeId = 2 })
-    Network Speed:
-    @await Component.InvokeAsync("NetworkSpeed", new { nodeId = 2 })
-    Temperature:
-    @await Component.InvokeAsync("Temperature", new { nodeId = 2 })
 
-</div>
+    <div class="leftChart">
+        Ram Usage:
+        @await Component.InvokeAsync("RamUsage", new { nodeId = 2 })
+    </div>
+    <div class="rightChart">
+        Cpu Usage:
+        @await Component.InvokeAsync("CpuUsage", new { nodeId = 2 })
+    </div>
+    <div class="leftChart">
+        Network Speed:
+        @await Component.InvokeAsync("NetworkSpeed", new { nodeId = 2 })
+        </div>
+    <div class="rightChart">
+        Temperature:
+        @await Component.InvokeAsync("Temperature", new { nodeId = 2 })
+        </div>
+    </div>
