@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NetworkStatus.Models;
 
 namespace NetworkStatus.ViewComponents
 {
@@ -17,14 +18,9 @@ namespace NetworkStatus.ViewComponents
             _hardwareStatusRepository = hardwareStatusRepository;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(
-        int nodeId)
+        public async Task<IViewComponentResult> InvokeAsync(IEnumerable<HardwareStatusModel> hardwareStatuses)
         {
-            var items = await _hardwareStatusRepository.GetHardwareStatusesForNode(nodeId);
-
-            return View(items);
-
+            return View(hardwareStatuses);
         }
-
     }
 }

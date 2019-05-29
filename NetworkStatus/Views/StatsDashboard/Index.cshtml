@@ -32,18 +32,18 @@
 
     <div class="leftChart">
         Ram Usage:
-        @await Component.InvokeAsync("RamUsage", new { nodeId = 2 })
+        @await Component.InvokeAsync("RamUsage", Model.HardwareStatuses)
     </div>
     <div class="rightChart">
         Cpu Usage:
-        @await Component.InvokeAsync("CpuUsage", new { nodeId = 2 })
+        @await Component.InvokeAsync("CpuUsage", Model.HardwareStatuses)
     </div>
     <div class="leftChart">
         Network Speed:
-        @await Component.InvokeAsync("NetworkSpeed", new { nodeId = 2 })
+        @await Component.InvokeAsync("NetworkSpeed", Model.NetworkStatuses)
         </div>
     <div class="rightChart">
         Temperature:
-        @await Component.InvokeAsync("Temperature", new { nodeId = 2 })
+        @await Component.InvokeAsync("Temperature", Model.HardwareStatuses)
         </div>
     </div>
