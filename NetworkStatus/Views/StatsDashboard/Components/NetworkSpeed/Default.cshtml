@@ -6,10 +6,19 @@
     }
 
     <div class="box-body">
-
         <div class="chart-container">
             <canvas id="networkChart" style="width:100%; height:500px"></canvas>
         </div>
+        <div>
+            Public IP Address: @Model.Last().PublicIpAddress
+            <br/>
+            Is Vpn: @Model.Last().IsVpn
+        </div>
+        <div>
+            Private IP Address: @Model.Last().PrivateIpAddress
+        </div>
+
+        
     </div>
 
     <script type="text/javascript">
