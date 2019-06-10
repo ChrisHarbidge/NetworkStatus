@@ -10,7 +10,7 @@ namespace NetworkStatus.Repositories
     {
         Task<ICollection<LinuxServiceStatus>> Index();
         Task<ICollection<LinuxServiceStatus>> GetLinuxServiceStatusesForNode(int nodeId);
-
+        Task<ICollection<LinuxServiceStatus>> GetLatestServiceStatusesForNode(int nodeId);
         Task AddLinuxServiceStatuses(ICollection<LinuxServiceStatus> statuses, int NodeId);
     }
 }

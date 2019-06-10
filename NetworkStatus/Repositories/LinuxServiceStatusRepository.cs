@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using NetworkStatus.Data;
 using NetworkStatus.Models;
 
@@ -16,6 +17,16 @@ namespace NetworkStatus.Repositories
             _context = context;
         }
 
+        public async Task<ICollection<LinuxServiceStatus>> GetLatestServiceStatusesForNode(int nodeId)
+        {
+            return await _context.LinuxServiceStatus
+                .Where(status => status.NodeId == nodeId)
+                .GroupBy(status => status.ServiceName,
+                    (key, statuses) => statuses
+                        .OrderBy(serviceStatus => serviceStatus.DateSent)
+                        .Last()).ToListAsync();
+        }
+
         public async Task AddLinuxServiceStatuses(ICollection<LinuxServiceStatus> statuses, int NodeId)
         {
             statuses.ToList().ForEach(status => status.NodeId = NodeId);
@@ -25,14 +36,14 @@ namespace NetworkStatus.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task<ICollection<LinuxServiceStatus>> GetLinuxServiceStatusesForNode(int nodeId)
+        public async Task<ICollection<LinuxServiceStatus>> GetLinuxServiceStatusesForNode(int nodeId)
         {
-            throw new NotImplementedException();
+            return await _context.LinuxServiceStatus.Where(status => status.NodeId == nodeId).ToListAsync();
         }
 
-        public Task<ICollection<LinuxServiceStatus>> Index()
+        public async Task<ICollection<LinuxServiceStatus>> Index()
         {
-            throw new NotImplementedException();
+            return await _context.LinuxServiceStatus.ToListAsync();
         }
     }
 }

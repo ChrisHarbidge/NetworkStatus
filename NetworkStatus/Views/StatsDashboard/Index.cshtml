@@ -41,9 +41,17 @@
     <div class="leftChart">
         Network Speed:
         @await Component.InvokeAsync("NetworkSpeed", Model.NetworkStatuses)
-        </div>
+    </div>
     <div class="rightChart">
         Temperature:
         @await Component.InvokeAsync("Temperature", Model.HardwareStatuses)
-        </div>
     </div>
+</div>
+
+<h2>Services</h2>
+<table>
+@foreach (var service in Model.LinuxServiceStatuses)
+{
+    <td>@service.ServiceName is running: @service.IsRunning</td>
+}
+</table>
