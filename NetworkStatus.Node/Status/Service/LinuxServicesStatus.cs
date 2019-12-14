@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace NetworkStatus.Node.Status.Service
+﻿namespace NetworkStatus.Node.Status.Service
 {
     public class LinuxServiceStatus
     {

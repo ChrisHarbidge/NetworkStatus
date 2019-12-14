@@ -1,5 +1,5 @@
-﻿using NetworkStatus.Node.Configuration;
-using NetworkStatus.Node.Dtos;
+﻿using NetworkStatus.Contract.Request;
+using NetworkStatus.Node.Configuration;
 using NetworkStatus.Node.Status;
 using NetworkStatus.Node.Status.Device;
 using NetworkStatus.Node.Status.Device.Network;
@@ -21,7 +21,7 @@ namespace NetworkStatus.Node.Mappers
                 NodeName = status.HardwareStatus.Hostname.Name,
                 Storage = Map(status.HardwareStatus.Storage),
                 
-                Services = status.ServicesStatus.ToList().Select(service => Map(service)).ToList()
+                Services = status.ServicesStatus.Select(service => Map(service)).ToList()
             };
         }
 
@@ -55,9 +55,9 @@ namespace NetworkStatus.Node.Mappers
             };
         }
 
-        public ServiceStatusDto Map(LinuxServiceStatus status)
+        public LinuxServiceStatusDto Map(LinuxServiceStatus status)
         {
-            return new ServiceStatusDto
+            return new LinuxServiceStatusDto
             {
                 ServiceName = status.ServiceName,
                 IsRunning = status.IsRunning

@@ -1,5 +1,5 @@
-﻿using NetworkStatus.Node.Configuration;
-using NetworkStatus.Node.Dtos;
+﻿using NetworkStatus.Contract.Request;
+using NetworkStatus.Node.Configuration;
 using NetworkStatus.Node.Mappers;
 using NetworkStatus.Node.Status;
 using NetworkStatus.Node.Status.Device;

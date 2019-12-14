@@ -1,10 +1,8 @@
 ﻿using NetworkStatus.Node.Configuration;
-using NetworkStatus.Node.Mappers;
 using NetworkStatus.Node.Serialisation;
 using NetworkStatus.Node.Status;
 using System;
 using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;

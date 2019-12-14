@@ -1,5 +1,4 @@
-﻿using NetworkStatus.Node.Status.Device.Cpu;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace NetworkStatus.Node.Tests.Status.Device.Cpu
 {

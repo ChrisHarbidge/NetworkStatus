@@ -1,5 +1,4 @@
-﻿using NetworkStatus.Node.Status.Device.Network.Performance;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace NetworkStatus.Node.Tests.Status.Network.Performance
 {

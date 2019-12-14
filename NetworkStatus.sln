@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetworkStatus", "NetworkStatus\NetworkStatus.csproj", "{B445A158-48B6-4AC2-B907-0E86CE5C6878}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetworkStatus.Node", "NetworkStatus.Node\NetworkStatus.Node.csproj", "{B9C8F6A0-FB1E-4E06-B1DE-30A85F5BC767}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetworkStatus.Node.Tests", "NetworkStatus.Node.Tests\NetworkStatus.Node.Tests.csproj", "{21B5FA90-7D18-4F9E-BA82-FDF01803C903}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NordVpnParser", "NordVpnParser\NordVpnParser.csproj", "{07D294E9-7D45-40E8-9AB1-3A3FDD1A5910}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NordVpnParser", "NordVpnParser\NordVpnParser.csproj", "{07D294E9-7D45-40E8-9AB1-3A3FDD1A5910}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkStatus.WebApi", "NetworkStatus.WebApi\NetworkStatus.WebApi.csproj", "{F3E3E00F-5455-42A9-8E9D-4A2224B98986}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkStatus.Persistence", "NetworkStatus.Persistence\NetworkStatus.Persistence.csproj", "{D65E056A-FA8A-4A0D-9A70-8A8D055AF804}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkStatus.Contract", "NetworkStatus.Contract\NetworkStatus.Contract.csproj", "{321DF53B-2E64-4EA5-BAF3-7073BC53F82C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B445A158-48B6-4AC2-B907-0E86CE5C6878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B445A158-48B6-4AC2-B907-0E86CE5C6878}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B445A158-48B6-4AC2-B907-0E86CE5C6878}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B445A158-48B6-4AC2-B907-0E86CE5C6878}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B9C8F6A0-FB1E-4E06-B1DE-30A85F5BC767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B9C8F6A0-FB1E-4E06-B1DE-30A85F5BC767}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9C8F6A0-FB1E-4E06-B1DE-30A85F5BC767}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +33,18 @@ Global
 		{07D294E9-7D45-40E8-9AB1-3A3FDD1A5910}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07D294E9-7D45-40E8-9AB1-3A3FDD1A5910}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07D294E9-7D45-40E8-9AB1-3A3FDD1A5910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3E3E00F-5455-42A9-8E9D-4A2224B98986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E3E00F-5455-42A9-8E9D-4A2224B98986}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E3E00F-5455-42A9-8E9D-4A2224B98986}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E3E00F-5455-42A9-8E9D-4A2224B98986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D65E056A-FA8A-4A0D-9A70-8A8D055AF804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D65E056A-FA8A-4A0D-9A70-8A8D055AF804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D65E056A-FA8A-4A0D-9A70-8A8D055AF804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D65E056A-FA8A-4A0D-9A70-8A8D055AF804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{321DF53B-2E64-4EA5-BAF3-7073BC53F82C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{321DF53B-2E64-4EA5-BAF3-7073BC53F82C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{321DF53B-2E64-4EA5-BAF3-7073BC53F82C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{321DF53B-2E64-4EA5-BAF3-7073BC53F82C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
