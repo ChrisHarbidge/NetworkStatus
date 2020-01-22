@@ -6,6 +6,7 @@ using NetworkStatus.Persistence.Repositories;
 namespace NetworkStatus.Controllers.Dashboard
 {
     [Route("[controller]")]
+    [Route("dashboard")]
     public class StatsDashboardController : Controller
     {
         private readonly IHardwareStatusRepository _hardwareStatusRepository;
@@ -23,15 +24,17 @@ namespace NetworkStatus.Controllers.Dashboard
         {
             var hardwareStatuses = _hardwareStatusRepository.GetHardwareStatusesForNode(2);
             var networkStatuses = _networkStatusRepository.GetStatusesForNode(2);
-            var linuxServiceStatuses = _linuxServiceStatusRepository.GetLatestServiceStatusesForNode(2);
+            // var linuxServiceStatuses = _linuxServiceStatusRepository.GetLatestServiceStatusesForNode(2);
 
-            Task.WaitAll(hardwareStatuses, networkStatuses, linuxServiceStatuses);
+            Task.WaitAll(hardwareStatuses, networkStatuses
+                // linuxServiceStatuses
+                );
 
             return View(new StatsDashboardModel
             {
                 HardwareStatuses = hardwareStatuses.Result,
                 NetworkStatuses = networkStatuses.Result,
-                LinuxServiceStatuses = linuxServiceStatuses.Result
+                // LinuxServiceStatuses = linuxServiceStatuses.Result
             });
         }
     }

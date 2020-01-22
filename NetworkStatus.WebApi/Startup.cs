@@ -24,24 +24,11 @@ namespace NetworkStatus.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
-
-
-            try
-            {
-                var context = services.GetService<ApplicationDbContext>();
-                context.Database.Migrate();
-                Seeder.Initialise(services);
-            }
-            catch (Exception ex)
-            {
-                var logger = services.GetRequiredService<ILogger<Program>>();
-                logger.LogError(ex, "An error occurred seeding the database");
-            }
-
 
             services.AddTransient<INodeStatusRepository, NodeStatusRepository>();
             services.AddTransient<IHardwareStatusRepository, HardwareStatusRepository>();
