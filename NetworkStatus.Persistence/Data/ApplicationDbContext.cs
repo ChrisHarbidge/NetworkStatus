@@ -21,6 +21,7 @@ namespace NetworkStatus.Persistence.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=aspnet-NetworkStatus-FE05F8D6-70DF-4548-8C30-DF9503BFCB22;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -101,31 +102,16 @@ namespace NetworkStatus.Persistence.Data
             var nodeStatus = new NodeStatus
             {
                 Id = 1,
-                HardwareStatus = new Collection<HardwareStatusModel>()
-                {
-                    hardwareStatus
-                },
                 LastPinged = dateSent,
-                NodeName = "Test Node",
-                Network = new Collection<Models.NetworkStatusModel>()
-                {
-                    networkStatus
-                },
-                Services = new Collection<LinuxServiceStatus>()
-                {
-                    serviceStatus
-                },
-                Storage = new Collection<StorageStatus>()
-                {
-                    storageStatus
-                }
+                NodeName = "Test Node"
             };
             
-            builder.Entity<NodeStatus>().HasData(nodeStatus);
             builder.Entity<HardwareStatusModel>().HasData(hardwareStatus);
             builder.Entity<NetworkStatusModel>().HasData(networkStatus);
             builder.Entity<LinuxServiceStatus>().HasData(serviceStatus);
             builder.Entity<StorageStatus>().HasData(storageStatus);
+            builder.Entity<NodeStatus>().HasData(nodeStatus);
+
         }
     }
 }
