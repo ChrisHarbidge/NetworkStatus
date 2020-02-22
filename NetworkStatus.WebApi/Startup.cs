@@ -57,7 +57,6 @@ namespace NetworkStatus.WebApi
             {
                 endpoints.MapControllers();
             });
-
         }
     }
 }

@@ -22,19 +22,19 @@ namespace NetworkStatus.Controllers.Dashboard
 
         public async Task<IActionResult> Index()
         {
-            var hardwareStatuses = _hardwareStatusRepository.GetHardwareStatusesForNode(2);
-            var networkStatuses = _networkStatusRepository.GetStatusesForNode(2);
-            // var linuxServiceStatuses = _linuxServiceStatusRepository.GetLatestServiceStatusesForNode(2);
+            var hardwareStatuses = _hardwareStatusRepository.GetHardwareStatusesForNode(1);
+            var networkStatuses = _networkStatusRepository.GetStatusesForNode(1); 
+            var linuxServiceStatuses = _linuxServiceStatusRepository.GetLatestServiceStatusesForNode(1);
 
-            Task.WaitAll(hardwareStatuses, networkStatuses
-                // linuxServiceStatuses
+            await Task.WhenAll(hardwareStatuses, networkStatuses,
+                linuxServiceStatuses
                 );
 
             return View(new StatsDashboardModel
             {
                 HardwareStatuses = hardwareStatuses.Result,
                 NetworkStatuses = networkStatuses.Result,
-                // LinuxServiceStatuses = linuxServiceStatuses.Result
+                LinuxServiceStatuses = linuxServiceStatuses.Result
             });
         }
     }

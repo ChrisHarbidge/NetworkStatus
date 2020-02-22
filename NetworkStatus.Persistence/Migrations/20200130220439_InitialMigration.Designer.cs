@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetworkStatus.Persistence.Data;
 
-namespace NetworkStatus.Persistence.Data.Migrations
+namespace NetworkStatus.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191224172110_Initial")]
-    partial class Initial
+    [Migration("20200130220439_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,6 +51,18 @@ namespace NetworkStatus.Persistence.Data.Migrations
                     b.HasIndex("NodeId");
 
                     b.ToTable("HardwareStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CpuUsage = 50.0m,
+                            DateSent = new DateTime(2020, 1, 30, 22, 4, 38, 588, DateTimeKind.Local).AddTicks(5954),
+                            NodeId = 1,
+                            RamUsage = 1.5m,
+                            Temperature = 30.0m,
+                            TotalRam = 4m
+                        });
                 });
 
             modelBuilder.Entity("NetworkStatus.Persistence.Models.LinuxServiceStatus", b =>
@@ -77,6 +89,16 @@ namespace NetworkStatus.Persistence.Data.Migrations
                     b.HasIndex("NodeId");
 
                     b.ToTable("LinuxServiceStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateSent = new DateTime(2020, 1, 30, 22, 4, 38, 588, DateTimeKind.Local).AddTicks(5954),
+                            IsRunning = true,
+                            NodeId = 1,
+                            ServiceName = "Test service"
+                        });
                 });
 
             modelBuilder.Entity("NetworkStatus.Persistence.Models.NetworkStatusModel", b =>
@@ -109,6 +131,18 @@ namespace NetworkStatus.Persistence.Data.Migrations
                     b.HasIndex("NodeId");
 
                     b.ToTable("NetworkStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateSent = new DateTime(2020, 1, 30, 22, 4, 38, 588, DateTimeKind.Local).AddTicks(5954),
+                            DownloadSpeed = 1.0m,
+                            IsVpn = true,
+                            NodeId = 1,
+                            PrivateIpAddress = "192.168.0.30",
+                            PublicIpAddress = "1.1.1.1"
+                        });
                 });
 
             modelBuilder.Entity("NetworkStatus.Persistence.Models.NodeStatus", b =>
@@ -127,6 +161,14 @@ namespace NetworkStatus.Persistence.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NodeStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            LastPinged = new DateTime(2020, 1, 30, 22, 4, 38, 588, DateTimeKind.Local).AddTicks(5954),
+                            NodeName = "Test Node"
+                        });
                 });
 
             modelBuilder.Entity("NetworkStatus.Persistence.Models.StorageStatus", b =>
@@ -153,6 +195,16 @@ namespace NetworkStatus.Persistence.Data.Migrations
                     b.HasIndex("NodeId");
 
                     b.ToTable("StorageStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateSent = new DateTime(2020, 1, 30, 22, 4, 38, 588, DateTimeKind.Local).AddTicks(5954),
+                            NodeId = 1,
+                            TotalStorageSpaceBytes = 10000000L,
+                            UsedStorageSpaceBytes = 50000L
+                        });
                 });
 
             modelBuilder.Entity("NetworkStatus.Persistence.Models.HardwareStatusModel", b =>

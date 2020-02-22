@@ -18,12 +18,12 @@ namespace NetworkStatus.Persistence.Repositories
 
         public async Task<ICollection<LinuxServiceStatus>> GetLatestServiceStatusesForNode(int nodeId)
         {
-            return await _context.LinuxServiceStatus
-                .Where(status => status.NodeId == nodeId)
+            return _context.LinuxServiceStatus
+                .Where(status => status.NodeId == nodeId).ToList()
                 .GroupBy(status => status.ServiceName,
                     (key, statuses) => statuses
-                        .OrderBy(serviceStatus => serviceStatus.DateSent)
-                        .Last()).ToListAsync();
+                        .OrderBy(serviceStatus => serviceStatus.DateSent).ToList()
+                        .Last()).ToList();
         }
 
         public async Task AddLinuxServiceStatuses(ICollection<LinuxServiceStatus> statuses, int NodeId)
