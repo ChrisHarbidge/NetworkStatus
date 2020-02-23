@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace NetworkStatus.Node.Status.Device.Network.External
 {
-    class ExternalIPAddressFetcher
+    class ExternalIpAddressFetcher
     {
         private const string ExternalIPApi = "https://api.ipify.org";
 
