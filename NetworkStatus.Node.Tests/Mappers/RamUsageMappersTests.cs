@@ -1,8 +1,8 @@
-﻿using NetworkStatus.Node.Exceptions;
-using NetworkStatus.Node.Mappers;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using NetworkStatus.Node.Exceptions;
+using NetworkStatus.Node.Mappers;
 
 namespace NetworkStatus.Node.Tests.Mappers
 {

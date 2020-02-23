@@ -1,11 +1,11 @@
-﻿using NetworkStatus.Node.Client.Api;
-using NetworkStatus.Node.Configuration;
+﻿using NetworkStatus.Node.Configuration;
 using NetworkStatus.Node.Node;
 using NetworkStatus.Node.Status.Device;
 using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using NetworkStatus.Node.Client;
 
 namespace NetworkStatus.Node
 {
