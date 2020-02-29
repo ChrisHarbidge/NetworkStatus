@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetworkStatus.Node.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NordVpnParser", "NordVpnParser\NordVpnParser.csproj", "{07D294E9-7D45-40E8-9AB1-3A3FDD1A5910}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkStatus.WebApi", "NetworkStatus.WebApi\NetworkStatus.WebApi.csproj", "{F3E3E00F-5455-42A9-8E9D-4A2224B98986}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkStatus.Api", "NetworkStatus.Api\NetworkStatus.Api.csproj", "{F3E3E00F-5455-42A9-8E9D-4A2224B98986}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkStatus.Persistence", "NetworkStatus.Persistence\NetworkStatus.Persistence.csproj", "{D65E056A-FA8A-4A0D-9A70-8A8D055AF804}"
 EndProject
