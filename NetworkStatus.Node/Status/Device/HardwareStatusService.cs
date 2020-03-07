@@ -17,8 +17,6 @@ namespace NetworkStatus.Node.Status.Device
         private IHardwareTemperatureService _hardwareTemperatureService;
         private IStorageSpaceService _storageSpaceService;
 
-        // TODO: Break this down, too many dependencies
-
         public HardwareStatusService(ICpuStatusService cpuStatusService, 
             INodeMachineNameService nodeMachineNameService,
             IMemoryUsageStatusService memoryUsageStatusService,

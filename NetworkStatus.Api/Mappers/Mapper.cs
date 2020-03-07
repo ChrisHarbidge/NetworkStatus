@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using NetworkStatus.Contract.Request;
@@ -11,7 +12,15 @@ namespace NetworkStatus.WebApi.Mappers
     {
         public NodeStatus Map(NodeStatusDto status)
         {
-            throw new NotImplementedException();
+            return new NodeStatus
+            {
+                Id = status.Id,
+                Network = new [] { Map(status.Network) },
+                Services = status.Services.Select(Map).ToArray(),
+                Storage = new [] { Map(status.Storage) },
+                HardwareStatus = new [] { Map(status.HardwareStatus) },
+                NodeName = status.NodeName
+            };
         }
 
         public NodeStatusResponseDto Map(NodeStatus status)

@@ -31,9 +31,9 @@ namespace NetworkStatus.Persistence.Repositories
             return await _context.HardwareStatus.Where(status => status.NodeId == nodeId).ToListAsync();
         }
 
-        public Task<ICollection<HardwareStatusModel>> Index()
+        public async Task<ICollection<HardwareStatusModel>> Index()
         {
-            throw new NotImplementedException();
+            return await _context.HardwareStatus.ToListAsync();
         }
     }
 }

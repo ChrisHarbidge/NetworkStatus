@@ -72,12 +72,5 @@ namespace NetworkStatus.Node.Node
                 }
             });
         }
-
-        public List<NodeStatusDto> GetServiceStatuses()
-        {
-            _services.Select(_serviceStatusFetcher.ServiceIsRunning);
-
-            throw new NotImplementedException();
-        }
     }
 }

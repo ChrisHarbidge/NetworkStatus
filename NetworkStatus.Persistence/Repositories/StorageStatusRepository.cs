@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using NetworkStatus.Persistence.Data;
 using NetworkStatus.Persistence.Models;
 
@@ -24,14 +26,14 @@ namespace NetworkStatus.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task<ICollection<StorageStatus>> GetStorageStatusesForNode(int NodeId)
+        public async Task<ICollection<StorageStatus>> GetStorageStatusesForNode(int NodeId)
         {
-            throw new NotImplementedException();
+            return await _context.StorageStatus.Where(status => status.NodeId == NodeId).ToListAsync();
         }
 
-        public Task<ICollection<StorageStatus>> Index()
+        public async Task<ICollection<StorageStatus>> Index()
         {
-            throw new NotImplementedException();
+            return await _context.StorageStatus.ToListAsync();
         }
     }
 }
