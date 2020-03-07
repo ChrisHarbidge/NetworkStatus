@@ -9,14 +9,7 @@ namespace NetworkStatus.WebApi.ViewComponents
     [ViewComponent( Name = "NetworkSpeed" )]
     public class NetworkSpeedViewComponent : ViewComponent
     {
-        private readonly INetworkStatusRepository _networkStatusRepository;
-
-        public NetworkSpeedViewComponent(INetworkStatusRepository networkStatusRepository)
-        {
-            _networkStatusRepository = networkStatusRepository;
-        }
-
-        public async Task<IViewComponentResult> InvokeAsync(IEnumerable<NetworkStatusModel> networkStatuses)
+        public IViewComponentResult Invoke(IEnumerable<NetworkStatusModel> networkStatuses)
         {
             return View(networkStatuses);
         }

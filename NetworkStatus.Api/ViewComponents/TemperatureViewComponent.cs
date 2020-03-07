@@ -9,14 +9,7 @@ namespace NetworkStatus.WebApi.ViewComponents
     [ViewComponent( Name = "Temperature" )]
     public class TemperatureViewComponent : ViewComponent
     {
-        private readonly IHardwareStatusRepository _hardwareStatusRepository;
-
-        public TemperatureViewComponent(IHardwareStatusRepository hardwareStatusRepository)
-        {
-            _hardwareStatusRepository = hardwareStatusRepository;
-        }
-
-        public async Task<IViewComponentResult> InvokeAsync(IEnumerable<HardwareStatusModel> hardwareStatuses)
+        public IViewComponentResult Invoke(IEnumerable<HardwareStatusModel> hardwareStatuses)
         {
             return View(hardwareStatuses);
         }
