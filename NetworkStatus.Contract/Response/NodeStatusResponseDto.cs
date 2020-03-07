@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NetworkStatus.Dto.Response
+namespace NetworkStatus.Contract.Response
 {
     public class NodeStatusResponseDto
     {

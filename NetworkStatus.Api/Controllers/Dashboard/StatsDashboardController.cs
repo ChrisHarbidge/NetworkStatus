@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NetworkStatus.Persistence.Models;
 using NetworkStatus.Persistence.Repositories;
 
-namespace NetworkStatus.Controllers.Dashboard
+namespace NetworkStatus.WebApi.Controllers.Dashboard
 {
     [Route("[controller]")]
     [Route("dashboard")]

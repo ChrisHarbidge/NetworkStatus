@@ -1,7 +1,7 @@
 ﻿using NetworkStatus.Contract.Request;
-using NetworkStatus.Dto.Response;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using NetworkStatus.Contract.Response;
 
 namespace NetworkStatus.WebApi.Services
 {

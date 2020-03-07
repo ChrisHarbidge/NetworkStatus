@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NetworkStatus.Persistence.Models;
 
-namespace NetworkStatus.Controllers
+namespace NetworkStatus.WebApi.Controllers
 {
     public class HomeController : Controller
     {

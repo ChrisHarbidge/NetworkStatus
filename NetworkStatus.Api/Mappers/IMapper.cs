@@ -1,5 +1,5 @@
 ﻿using NetworkStatus.Contract.Request;
-using NetworkStatus.Dto.Response;
+using NetworkStatus.Contract.Response;
 using NetworkStatus.Persistence.Models;
 
 namespace NetworkStatus.WebApi.Mappers

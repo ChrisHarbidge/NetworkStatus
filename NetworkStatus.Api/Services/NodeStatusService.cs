@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NetworkStatus.Persistence.Repositories;
-using NetworkStatus.Dto.Response;
 using NetworkStatus.WebApi.Mappers;
 using NetworkStatus.Contract.Request;
+using NetworkStatus.Contract.Response;
 
 namespace NetworkStatus.WebApi.Services
 {

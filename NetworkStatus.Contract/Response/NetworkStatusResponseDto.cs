@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NetworkStatus.Dto.Response
+namespace NetworkStatus.Contract.Response
 {
     public class NetworkStatusResponseDto
     {

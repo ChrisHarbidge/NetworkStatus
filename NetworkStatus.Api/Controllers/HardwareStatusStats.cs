@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetworkStatus.Persistence.Data;
 
-namespace NetworkStatus.Controllers
+namespace NetworkStatus.WebApi.Controllers
 {
     public class HardwareStatusStats : Controller
     {

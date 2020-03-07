@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using NetworkStatus.Dto.Response;
-
+using NetworkStatus.Contract.Request;
+using NetworkStatus.Contract.Response;
 using NetworkStatus.Persistence.Models;
 using NetworkStatus.WebApi.Services;
-using NetworkStatus.Contract.Request;
 
-namespace NetworkStatus.Controllers
+namespace NetworkStatus.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
