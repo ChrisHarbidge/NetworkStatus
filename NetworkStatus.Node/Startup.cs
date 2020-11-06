@@ -16,7 +16,7 @@ namespace NetworkStatus.Node
             return new ServiceCollection()
                 .AddScoped<ICpuStatusService, LinuxCpuStatusService>()
                 .AddScoped<INodeMachineNameService, NodeMachineNameService>()
-                .AddScoped<IMemoryUsageStatusService, MemoryUsageStatusService>()
+                .AddScoped<IMemoryUsageStatusService, LinuxMemoryUsageStatusService>()
                 .AddScoped<INetworkStatusService, NetworkStatusService>()
                 .AddScoped<IHardwareStatusService, HardwareStatusService>()
                 .AddScoped<IHardwareTemperatureService, HardwareTemperatureService>()
