@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace NetworkStatus.Node.Node
 {
-    class PiNode
+    class Node
     {
         private List<ILinuxService> _services = new List<ILinuxService>();
 
@@ -21,7 +21,7 @@ namespace NetworkStatus.Node.Node
         private readonly LinuxServiceStatusFetcher _serviceStatusFetcher = new LinuxServiceStatusFetcher();
         private readonly IHardwareStatusService _hardwareStatusService;
 
-        public PiNode(NodeConfiguration configuration, IHardwareStatusService hardwareStatusService)
+        public Node(NodeConfiguration configuration, IHardwareStatusService hardwareStatusService)
         {
             _configuration = configuration;
             _services.AddRange(configuration.ServiceNames.Select(_serviceMapper.Resolve));

@@ -45,7 +45,6 @@ namespace NetworkStatus.Node.Mappers
                 throw new RamUsageReadingException($"Error reading total memory: {ex.Message}");
             }
 
-
             try
             {
 

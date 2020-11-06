@@ -14,7 +14,7 @@ namespace NetworkStatus.Node
         public ServiceProvider GetServiceProvider()
         {
             return new ServiceCollection()
-                .AddScoped<ICpuStatusService, CpuStatusService>()
+                .AddScoped<ICpuStatusService, LinuxCpuStatusService>()
                 .AddScoped<INodeMachineNameService, NodeMachineNameService>()
                 .AddScoped<IMemoryUsageStatusService, MemoryUsageStatusService>()
                 .AddScoped<INetworkStatusService, NetworkStatusService>()

@@ -4,7 +4,7 @@ using NetworkStatus.Node.Mappers;
 
 namespace NetworkStatus.Node.Status.Device.Memory
 {
-    class MemoryUsageStatusService : IMemoryUsageStatusService
+    class LinuxMemoryUsageStatusService : IMemoryUsageStatusService
     {
         private RamUsageMapper _mapper = new RamUsageMapper();
 

@@ -2,7 +2,7 @@
 
 namespace NetworkStatus.Node.Status.Device.Cpu
 {
-    public class CpuStatusService : ICpuStatusService
+    public class LinuxCpuStatusService : ICpuStatusService
     {
         private CpuProcStatParser _statusParser = new CpuProcStatParser();
 

@@ -25,7 +25,7 @@ namespace NetworkStatus.Node
 
             var hardwareStatusService = (IHardwareStatusService)serviceProvider.GetService(typeof(IHardwareStatusService));
 
-            var node = new PiNode(config, hardwareStatusService);
+            var node = new Node.Node(config, hardwareStatusService);
 
             var httpClient = new HttpClient();
 
