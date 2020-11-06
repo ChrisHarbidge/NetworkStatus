@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Runtime.InteropServices;
+using Microsoft.Extensions.DependencyInjection;
 using NetworkStatus.Node.Status.Device;
 using NetworkStatus.Node.Status.Device.Cpu;
 using NetworkStatus.Node.Status.Device.MachineName;
@@ -13,15 +14,27 @@ namespace NetworkStatus.Node
     {
         public ServiceProvider GetServiceProvider()
         {
-            return new ServiceCollection()
-                .AddScoped<ICpuStatusService, LinuxCpuStatusService>()
+            var serviceCollection  = new ServiceCollection()
                 .AddScoped<INodeMachineNameService, NodeMachineNameService>()
-                .AddScoped<IMemoryUsageStatusService, LinuxMemoryUsageStatusService>()
                 .AddScoped<INetworkStatusService, NetworkStatusService>()
                 .AddScoped<IHardwareStatusService, HardwareStatusService>()
                 .AddScoped<IHardwareTemperatureService, HardwareTemperatureService>()
-                .AddScoped<IStorageSpaceService, StorageSpaceService>()
-                .BuildServiceProvider();
+                .AddScoped<IStorageSpaceService, StorageSpaceService>();
+            
+            var isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
+            if (isWindows)
+            {
+                serviceCollection.AddScoped<ICpuStatusService, WindowsCpuStatusService>()
+                    .AddScoped<IMemoryUsageStatusService, WindowsMemoryUsageStatusService>();
+            }
+            else
+            {
+                serviceCollection.AddScoped<ICpuStatusService, LinuxCpuStatusService>()
+                    .AddScoped<IMemoryUsageStatusService, LinuxMemoryUsageStatusService>();
+            }
+
+            return serviceCollection.BuildServiceProvider();
         }
     }
 }
