@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "NetworkStatus.Listener": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
