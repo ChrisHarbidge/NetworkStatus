@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetworkStatus.Worker.Listener;
 using NetworkStatus.Worker.Publisher;
+using NetworkStatus.Worker.Status;
 
 namespace NetworkStatus.Worker
 {
@@ -18,9 +19,11 @@ namespace NetworkStatus.Worker
                 {
                     services.AddHostedService<ServerWorker>()
                         .AddHostedService<ClientWorker>()
+                        .AddHostedService<StatusWorker>()
                         .AddSingleton<IExternalNodesBank, ExternalNodesBank>()
                         .AddSingleton<IPublishClient, PublishClient>()
-                        .AddSingleton<IListenerServer, ListenerServer>();
+                        .AddSingleton<IListenerServer, ListenerServer>()
+                        .AddLogging();
                 });
     }
 }

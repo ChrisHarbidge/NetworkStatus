@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace NetworkStatus.Worker.Listener
 {
@@ -15,17 +16,19 @@ namespace NetworkStatus.Worker.Listener
     public class ListenerServer : IListenerServer
     {
         private readonly IExternalNodesBank _externalNodesBank;
+        private readonly ILogger<ListenerServer> _logger;
 
-        public ListenerServer(IExternalNodesBank externalNodesBank)
+        public ListenerServer(IExternalNodesBank externalNodesBank, ILogger<ListenerServer> logger)
         {
             _externalNodesBank = externalNodesBank;
+            _logger = logger;
         }
         
         public Task Listen(CancellationToken stoppingToken)
         {
             return Task.Run(() =>
             { 
-                var server = new UdpClient(8891);
+                var server = new UdpClient(8893);
                 var responseData = Encoding.ASCII.GetBytes("SomeResponseData");
             
                 while (stoppingToken.IsCancellationRequested == false)
@@ -33,7 +36,7 @@ namespace NetworkStatus.Worker.Listener
                     var clientEp = new IPEndPoint(IPAddress.Any, 0);
                     var clientRequestData = server.Receive(ref clientEp);
 
-                    Console.WriteLine($"Adding {clientEp.Address} to the list of hosts");
+                    _logger.LogInformation($"Adding {clientEp.Address} to the list of hosts");
                     _externalNodesBank.AddAddress(clientEp.Address);
                     server.Send(responseData, responseData.Length, clientEp);
                 }

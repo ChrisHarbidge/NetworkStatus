@@ -19,8 +19,13 @@ namespace NetworkStatus.Worker.Publisher
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            _logger.LogInformation("Starting client worker");
+         
+            await Task.Delay(1000, stoppingToken);
+            
             while (stoppingToken.IsCancellationRequested == false)
             {
+                
                 await _publishClient.Connect(stoppingToken);
                 _logger.LogInformation("ClientWorker running at: {time}", DateTimeOffset.Now);
                 await Task.Delay(1000, stoppingToken);

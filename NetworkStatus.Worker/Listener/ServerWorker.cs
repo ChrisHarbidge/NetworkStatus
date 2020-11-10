@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
@@ -18,9 +19,17 @@ namespace NetworkStatus.Worker.Listener
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var listenerTask = _listenerServer.Listen(stoppingToken);
+            _logger.LogInformation("Starting server worker");
 
-            await Task.WhenAll(listenerTask);
+            try
+            {
+                var listenerTask = _listenerServer.Listen(stoppingToken);
+                await listenerTask;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+            }
         }
     }
 }

@@ -18,21 +18,19 @@ namespace NetworkStatus.Worker.Publisher
         {
             return Task.Run(() =>
             {
-                // while (cancellationToken.IsCancellationRequested == false)
-                // {
-                    var client = new UdpClient();
-                    var requestData = Encoding.ASCII.GetBytes("SomeRequestData");
-                    var serverEp = new IPEndPoint(IPAddress.Any, 0);
+                var client = new UdpClient();
+                var requestData = Encoding.ASCII.GetBytes("SomeRequestData");
+                var serverEp = new IPEndPoint(IPAddress.Any, 0);
 
-                    client.EnableBroadcast = true;
-                    client.Send(requestData, requestData.Length, new IPEndPoint(IPAddress.Broadcast, 8891));
+                client.EnableBroadcast = true;
+                client.Send(requestData, requestData.Length, new IPEndPoint(IPAddress.Broadcast, 8893));
 
-                    var serverResponseData = client.Receive(ref serverEp);
-                    var serverResponse = Encoding.ASCII.GetString(serverResponseData);
-                    Console.WriteLine("Recived {0} from {1}", serverResponse, serverEp.Address.ToString());
+                var serverResponseData = client.Receive(ref serverEp);
+                var serverResponse = Encoding.ASCII.GetString(serverResponseData);
+                Console.WriteLine("Recived {0} from {1}", serverResponse, serverEp.Address.ToString());
 
-                    client.Close();
-                // }
+                client.Close();
+            
             }, cancellationToken);
         }
     }
