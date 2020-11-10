@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkStatus.Persistence",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkStatus.Contract", "NetworkStatus.Contract\NetworkStatus.Contract.csproj", "{321DF53B-2E64-4EA5-BAF3-7073BC53F82C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkStatus.Worker", "NetworkStatus.Worker\NetworkStatus.Worker.csproj", "{416EF7B7-75BB-40F0-A427-8148946A478B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{321DF53B-2E64-4EA5-BAF3-7073BC53F82C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{321DF53B-2E64-4EA5-BAF3-7073BC53F82C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{321DF53B-2E64-4EA5-BAF3-7073BC53F82C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{416EF7B7-75BB-40F0-A427-8148946A478B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{416EF7B7-75BB-40F0-A427-8148946A478B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{416EF7B7-75BB-40F0-A427-8148946A478B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{416EF7B7-75BB-40F0-A427-8148946A478B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
