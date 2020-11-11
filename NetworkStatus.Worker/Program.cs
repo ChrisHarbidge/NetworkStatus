@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NetworkStatus.Node;
 using NetworkStatus.Worker.Listener;
 using NetworkStatus.Worker.Publisher;
 using NetworkStatus.Worker.Status;
@@ -24,6 +25,9 @@ namespace NetworkStatus.Worker
                         .AddSingleton<IPublishClient, PublishClient>()
                         .AddSingleton<IListenerServer, ListenerServer>()
                         .AddLogging();
+                    
+                    // Register Node services
+                    Startup.RegisterServices(services);
                 });
     }
 }

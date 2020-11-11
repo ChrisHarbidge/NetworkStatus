@@ -14,8 +14,16 @@ namespace NetworkStatus.Node
     {
         public ServiceProvider GetServiceProvider()
         {
-            var serviceCollection  = new ServiceCollection()
-                .AddScoped<INodeMachineNameService, NodeMachineNameService>()
+            var serviceCollection  = new ServiceCollection();
+            
+            RegisterServices(serviceCollection);
+
+            return serviceCollection.BuildServiceProvider();
+        }
+
+        public static void RegisterServices(IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddScoped<INodeMachineNameService, NodeMachineNameService>()
                 .AddScoped<INetworkStatusService, NetworkStatusService>()
                 .AddScoped<IHardwareStatusService, HardwareStatusService>()
                 .AddScoped<IHardwareTemperatureService, HardwareTemperatureService>()
@@ -33,8 +41,6 @@ namespace NetworkStatus.Node
                 serviceCollection.AddScoped<ICpuStatusService, LinuxCpuStatusService>()
                     .AddScoped<IMemoryUsageStatusService, LinuxMemoryUsageStatusService>();
             }
-
-            return serviceCollection.BuildServiceProvider();
         }
     }
 }

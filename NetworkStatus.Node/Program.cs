@@ -33,7 +33,6 @@ namespace NetworkStatus.Node
 
             while (true)
             {
-
                 var status = node.GetCurrentStatus();
 
                 Console.WriteLine(status.ToString());
