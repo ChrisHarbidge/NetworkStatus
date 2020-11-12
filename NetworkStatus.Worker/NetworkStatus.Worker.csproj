@@ -13,4 +13,13 @@
     <ItemGroup>
       <ProjectReference Include="..\NetworkStatus.Node\NetworkStatus.Node.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <None Include="NodeConfiguration.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\NordVpnIpAddresses.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 </Project>

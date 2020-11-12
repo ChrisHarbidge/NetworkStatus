@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace NetworkStatus.Node.Node
 {
-    class Node
+    public class Node
     {
         private List<ILinuxService> _services = new List<ILinuxService>();
 

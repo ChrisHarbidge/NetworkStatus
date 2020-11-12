@@ -1,6 +1,6 @@
 ﻿namespace NetworkStatus.Node.Status.Device
 {
-    interface IHardwareStatusService
+    public interface IHardwareStatusService
     {
         HardwareStatus GetHardwareStatus();
     }

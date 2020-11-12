@@ -23,23 +23,23 @@ namespace NetworkStatus.Node
 
         public static void RegisterServices(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<INodeMachineNameService, NodeMachineNameService>()
-                .AddScoped<INetworkStatusService, NetworkStatusService>()
-                .AddScoped<IHardwareStatusService, HardwareStatusService>()
-                .AddScoped<IHardwareTemperatureService, HardwareTemperatureService>()
-                .AddScoped<IStorageSpaceService, StorageSpaceService>();
+            serviceCollection.AddSingleton<INodeMachineNameService, NodeMachineNameService>()
+                .AddSingleton<INetworkStatusService, NetworkStatusService>()
+                .AddSingleton<IHardwareStatusService, HardwareStatusService>()
+                .AddSingleton<IHardwareTemperatureService, HardwareTemperatureService>()
+                .AddSingleton<IStorageSpaceService, StorageSpaceService>();
             
             var isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
             if (isWindows)
             {
-                serviceCollection.AddScoped<ICpuStatusService, WindowsCpuStatusService>()
-                    .AddScoped<IMemoryUsageStatusService, WindowsMemoryUsageStatusService>();
+                serviceCollection.AddSingleton<ICpuStatusService, WindowsCpuStatusService>()
+                    .AddSingleton<IMemoryUsageStatusService, WindowsMemoryUsageStatusService>();
             }
             else
             {
-                serviceCollection.AddScoped<ICpuStatusService, LinuxCpuStatusService>()
-                    .AddScoped<IMemoryUsageStatusService, LinuxMemoryUsageStatusService>();
+                serviceCollection.AddSingleton<ICpuStatusService, LinuxCpuStatusService>()
+                    .AddSingleton<IMemoryUsageStatusService, LinuxMemoryUsageStatusService>();
             }
         }
     }

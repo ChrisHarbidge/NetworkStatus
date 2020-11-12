@@ -13,6 +13,10 @@ namespace NetworkStatus.Node.Status.Device.Temperature
 
         public HardwareTemperature GetHardwareTemperature()
         {
+            // TODO: Fix this
+            
+            return new HardwareTemperature();
+            
             var folderNameRegex = new Regex(HARDWARE_TEMP_FILE_PATH_REGEX);
 
             var folder = Directory.GetDirectories(HARDWARE_TEMP_FOLDER_PATH).First(path => folderNameRegex.IsMatch(path));

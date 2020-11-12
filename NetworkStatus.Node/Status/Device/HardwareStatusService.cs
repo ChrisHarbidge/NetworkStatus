@@ -47,7 +47,8 @@ namespace NetworkStatus.Node.Status.Device
                 Task.Run(() => { memoryStatus = _memoryUsageStatusService.GetRamUsage(); }),
                 Task.Run(() => { networkStatus = _networkStatusService.GetNetworkStatus(); }),
                 Task.Run(() => { hardwareTemperature = _hardwareTemperatureService.GetHardwareTemperature(); }),
-                Task.Run(() => { storageStatus = _storageSpaceService.GetStorageStatus(); }),
+               // TODO: Fix this
+                // Task.Run(() => { storageStatus = _storageSpaceService.GetStorageStatus(); }),
             });
 
 
