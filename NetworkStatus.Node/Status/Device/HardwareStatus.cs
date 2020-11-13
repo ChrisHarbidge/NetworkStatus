@@ -20,16 +20,13 @@ namespace NetworkStatus.Node.Status.Device
 
         public override string ToString()
         {
-            var stringBuilder = new StringBuilder();
-
-            
-            // TODO: Fix this
+            var stringBuilder = new StringBuilder(); 
             stringBuilder.AppendLine($"Machine Name: {Hostname.Name}");
-            // stringBuilder.AppendLine($"Cpu usage: {Math.Round(CpuStatus.CpuPercentageUsed, 2)}%");
-            // stringBuilder.AppendLine($"Memory Usage: {RamUsage.PercentageUsed}%");
-            // stringBuilder.AppendLine($"Temperature: {Temparature.TemperatureDegreesCelcius()}C");
+            stringBuilder.AppendLine($"Cpu usage: {Math.Round(CpuStatus.CpuPercentageUsed, 2)}%");
+            stringBuilder.AppendLine($"Memory Usage: {RamUsage.PercentageUsed}%");
+            stringBuilder.AppendLine($"Temperature: {Temparature.TemperatureDegreesCelcius()}C");
             stringBuilder.AppendLine($"Network Status: {NetworkStatus.ToString()}");
-            // stringBuilder.AppendLine($"Storage: {Storage.ToString()}");
+            stringBuilder.AppendLine($"Storage: {Storage.ToString()}");
 
             return stringBuilder.ToString();
         }
