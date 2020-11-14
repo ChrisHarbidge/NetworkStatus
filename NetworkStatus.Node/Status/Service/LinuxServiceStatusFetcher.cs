@@ -3,7 +3,12 @@ using System.IO;
 
 namespace NetworkStatus.Node.Status.Service
 {
-    class LinuxServiceStatusFetcher
+    public interface ILinuxServiceStatusFetcher
+    {
+        LinuxServiceStatus ServiceIsRunning(ILinuxService service);
+    }
+
+    public class LinuxServiceStatusFetcher : ILinuxServiceStatusFetcher
     {
         public LinuxServiceStatus ServiceIsRunning(ILinuxService service)
         {

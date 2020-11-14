@@ -10,18 +10,13 @@ namespace NetworkStatus.Worker.Status
 {
     public class StatusWorker : BackgroundService
     {
-        // TODO: Clean up these dependencies, make Node injectable
-        private readonly IHardwareStatusService _hardwareStatusService;
-        private readonly StatusFetcher _statusFetcher;
+        private readonly IStatusFetcher _statusFetcher;
         private readonly ILogger<StatusWorker> _logger;
         
-        public StatusWorker(IHardwareStatusService hardwareStatusService, ILogger<StatusWorker> logger)
+        public StatusWorker(IStatusFetcher statusFetcher, ILogger<StatusWorker> logger)
         {
-            _hardwareStatusService = hardwareStatusService;
             _logger = logger;
-            
-            var configuration = new NodeConfiguration();
-            _statusFetcher = new StatusFetcher(configuration, _hardwareStatusService);
+            _statusFetcher = statusFetcher;
         }
     
         protected override Task ExecuteAsync(CancellationToken stoppingToken)

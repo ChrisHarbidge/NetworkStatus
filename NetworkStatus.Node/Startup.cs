@@ -7,6 +7,7 @@ using NetworkStatus.Node.Status.Device.Memory;
 using NetworkStatus.Node.Status.Device.Network;
 using NetworkStatus.Node.Status.Device.Storage;
 using NetworkStatus.Node.Status.Device.Temperature;
+using NetworkStatus.Node.Status.Service;
 
 namespace NetworkStatus.Node
 {
@@ -23,7 +24,8 @@ namespace NetworkStatus.Node
 
         public static void RegisterServices(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<INodeMachineNameService, NodeMachineNameService>()
+            serviceCollection.AddSingleton<IStatusFetcher, StatusFetcher>()
+                .AddSingleton<INodeMachineNameService, NodeMachineNameService>()
                 .AddSingleton<INetworkStatusService, NetworkStatusService>()
                 .AddSingleton<IHardwareStatusService, HardwareStatusService>()
                 .AddSingleton<IHardwareTemperatureService, HardwareTemperatureService>()
@@ -39,7 +41,8 @@ namespace NetworkStatus.Node
             else
             {
                 serviceCollection.AddSingleton<ICpuStatusService, LinuxCpuStatusService>()
-                    .AddSingleton<IMemoryUsageStatusService, LinuxMemoryUsageStatusService>();
+                    .AddSingleton<IMemoryUsageStatusService, LinuxMemoryUsageStatusService>()
+                    .AddSingleton<ILinuxServiceStatusFetcher, LinuxServiceStatusFetcher>();
             }
         }
     }

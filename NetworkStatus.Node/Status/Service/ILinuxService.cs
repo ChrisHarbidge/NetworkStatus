@@ -1,6 +1,6 @@
 ﻿namespace NetworkStatus.Node.Status.Service
 {
-    interface ILinuxService
+    public interface ILinuxService
     {
         string ProcessIdFolder();
         string ProcessIdFileName();

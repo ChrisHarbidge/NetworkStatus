@@ -37,11 +37,11 @@ namespace NetworkStatus.Node.Client
 
             var fullEndpointPath = EndpointPath + _configuration.NodeId;
 
-            var fullUrl = Path.Combine(_configuration.ServerAddress, fullEndpointPath);
-
-            var responseString = await _client.PutAsync(fullUrl, content);
-
-            Console.WriteLine($"Response: {responseString}");
+            // var fullUrl = Path.Combine(_configuration.ServerAddress, fullEndpointPath);
+            //
+            // var responseString = await _client.PutAsync(fullUrl, content);
+            //
+            // Console.WriteLine($"Response: {responseString}");
         }
     }
 }

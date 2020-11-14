@@ -4,6 +4,7 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using NetworkStatus.Node.Client;
 
 namespace NetworkStatus.Node
@@ -22,9 +23,7 @@ namespace NetworkStatus.Node
 
             var config = configManager.LoadConfiguration();
 
-            var hardwareStatusService = (IHardwareStatusService)serviceProvider.GetService(typeof(IHardwareStatusService));
-
-            var node = new Node.StatusFetcher(config, hardwareStatusService);
+            var node = serviceProvider.GetService<IStatusFetcher>();
 
             var httpClient = new HttpClient();
 

@@ -11,20 +11,26 @@ using NetworkStatus.Node.Status.Service;
 
 namespace NetworkStatus.Node
 {
-    public class StatusFetcher
+    public interface IStatusFetcher
+    {
+        NodeStatus GetCurrentStatus();
+    }
+
+    public class StatusFetcher : IStatusFetcher
     {
         private List<ILinuxService> _services = new List<ILinuxService>();
 
         private readonly NodeConfiguration _configuration;
         private readonly ServiceMapper _serviceMapper = new ServiceMapper();
-        private readonly LinuxServiceStatusFetcher _serviceStatusFetcher = new LinuxServiceStatusFetcher();
+        private readonly ILinuxServiceStatusFetcher _serviceStatusFetcher;
         private readonly IHardwareStatusService _hardwareStatusService;
 
-        public StatusFetcher(NodeConfiguration configuration, IHardwareStatusService hardwareStatusService)
+        public StatusFetcher(ILinuxServiceStatusFetcher serviceStatusFetcher, IHardwareStatusService hardwareStatusService)
         {
-            _configuration = configuration;
-            _services.AddRange(configuration.ServiceNames.Select(_serviceMapper.Resolve));
+            // TODO: Move this into a whitelisting service
+            // _services.AddRange(configuration.ServiceNames.Select(_serviceMapper.Resolve));
             _hardwareStatusService = hardwareStatusService;
+            _serviceStatusFetcher = serviceStatusFetcher;
         }
 
         public NodeStatus GetCurrentStatus()
