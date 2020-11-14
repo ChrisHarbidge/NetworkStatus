@@ -1,5 +1,4 @@
 ﻿using NetworkStatus.Node.Configuration;
-using NetworkStatus.Node.Node;
 using NetworkStatus.Node.Status.Device;
 using System;
 using System.Net.Http;
@@ -25,7 +24,7 @@ namespace NetworkStatus.Node
 
             var hardwareStatusService = (IHardwareStatusService)serviceProvider.GetService(typeof(IHardwareStatusService));
 
-            var node = new Node.Node(config, hardwareStatusService);
+            var node = new Node.StatusFetcher(config, hardwareStatusService);
 
             var httpClient = new HttpClient();
 

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NetworkStatus.Node;
 using NetworkStatus.Node.Configuration;
 using NetworkStatus.Node.Status.Device;
 
@@ -11,7 +12,7 @@ namespace NetworkStatus.Worker.Status
     {
         // TODO: Clean up these dependencies, make Node injectable
         private readonly IHardwareStatusService _hardwareStatusService;
-        private readonly Node.Node.Node _node;
+        private readonly StatusFetcher _statusFetcher;
         private readonly ILogger<StatusWorker> _logger;
         
         public StatusWorker(IHardwareStatusService hardwareStatusService, ILogger<StatusWorker> logger)
@@ -20,14 +21,14 @@ namespace NetworkStatus.Worker.Status
             _logger = logger;
             
             var configuration = new NodeConfiguration();
-            _node = new Node.Node.Node(configuration, _hardwareStatusService);
+            _statusFetcher = new StatusFetcher(configuration, _hardwareStatusService);
         }
     
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (stoppingToken.IsCancellationRequested == false)
             {
-                var status = _node.GetCurrentStatus();
+                var status = _statusFetcher.GetCurrentStatus();
 
                 _logger.LogInformation(status.ToString());
                 

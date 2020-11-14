@@ -28,7 +28,7 @@ namespace NetworkStatus.Worker.Publisher
                 
                 await _publishClient.Connect(stoppingToken);
                 _logger.LogInformation("ClientWorker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
+                await Task.Delay(60000, stoppingToken);
             }
         }
     }
