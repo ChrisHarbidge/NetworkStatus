@@ -28,7 +28,7 @@ namespace NetworkStatus.Worker.Listener
         {
             return Task.Run(() =>
             { 
-                var server = new UdpClient(8893);
+                using var server = new UdpClient(8893);
                 var responseData = Encoding.ASCII.GetBytes("SomeResponseData");
             
                 while (stoppingToken.IsCancellationRequested == false)
@@ -42,7 +42,6 @@ namespace NetworkStatus.Worker.Listener
                 }
             
                 Console.WriteLine("Shutting down server");    
-                server.Dispose();
             }, stoppingToken);
         }
     }

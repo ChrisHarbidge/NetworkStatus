@@ -8,6 +8,9 @@ using NetworkStatus.Node.Status.Device.Network;
 using NetworkStatus.Node.Status.Device.Storage;
 using NetworkStatus.Node.Status.Device.Temperature;
 using NetworkStatus.Node.Status.Service;
+using NetworkStatus.Node.Status.Service.PiHole;
+using NetworkStatus.Node.Status.Service.Plex;
+using NetworkStatus.Node.Status.Service.Transmission;
 
 namespace NetworkStatus.Node
 {
@@ -42,7 +45,11 @@ namespace NetworkStatus.Node
             {
                 serviceCollection.AddSingleton<ICpuStatusService, LinuxCpuStatusService>()
                     .AddSingleton<IMemoryUsageStatusService, LinuxMemoryUsageStatusService>()
-                    .AddSingleton<ILinuxServiceStatusFetcher, LinuxServiceStatusFetcher>();
+                    .AddSingleton<ILinuxServiceStatusFetcher, LinuxServiceStatusFetcher>()
+                    .AddSingleton<IInstalledServiceVerifier, InstalledServiceVerifier>()
+                    .AddSingleton<ILinuxService, PiHoleService>()
+                    .AddSingleton<ILinuxService, PlexMediaServerService>()
+                    .AddSingleton<ILinuxService, TransmissionService>();
             }
         }
     }
