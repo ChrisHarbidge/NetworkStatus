@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NetworkStatus.Node;
-using NetworkStatus.Node.Configuration;
-using NetworkStatus.Node.Status.Device;
 
 namespace NetworkStatus.Worker.Status
 {

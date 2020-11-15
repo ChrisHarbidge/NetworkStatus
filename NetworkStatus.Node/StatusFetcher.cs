@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using NetworkStatus.Node.Configuration;
 using NetworkStatus.Node.Status;
 using NetworkStatus.Node.Status.Device;
 using NetworkStatus.Node.Status.Service;
