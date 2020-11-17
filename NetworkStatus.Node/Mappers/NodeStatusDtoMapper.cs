@@ -11,6 +11,18 @@ namespace NetworkStatus.Node.Mappers
 {
     public class NodeStatusDtoMapper
     {
+        public NodeStatusDto Map(NodeStatus status)
+        {
+            return new NodeStatusDto
+            {
+                HardwareStatus = Map(status.HardwareStatus),
+                Network = Map(status.HardwareStatus.NetworkStatus),
+                NodeName = status.HardwareStatus.Hostname.Name,
+                Storage = Map(status.HardwareStatus.Storage),
+                Services = status.ServicesStatus.Select(service => Map(service)).ToList()
+            };
+        }
+
         public NodeStatusDto Map(NodeStatus status, NodeConfiguration configuration)
         {
             return new NodeStatusDto
@@ -20,7 +32,6 @@ namespace NetworkStatus.Node.Mappers
                 Network = Map(status.HardwareStatus.NetworkStatus),
                 NodeName = status.HardwareStatus.Hostname.Name,
                 Storage = Map(status.HardwareStatus.Storage),
-                
                 Services = status.ServicesStatus.Select(service => Map(service)).ToList()
             };
         }

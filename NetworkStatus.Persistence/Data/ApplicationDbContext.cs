@@ -58,7 +58,7 @@ namespace NetworkStatus.Persistence.Data
                 .HasForeignKey(status => status.NodeId)
                 .HasConstraintName("ForeignKey_Storage_Node");
             
-             Seed(builder);
+             // Seed(builder);
         }
 
         private static void Seed(ModelBuilder builder)

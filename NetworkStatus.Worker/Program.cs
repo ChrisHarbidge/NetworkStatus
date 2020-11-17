@@ -1,6 +1,9 @@
+using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetworkStatus.Node;
+using NetworkStatus.Node.Configuration;
+using NetworkStatus.Worker.Client;
 using NetworkStatus.Worker.Listener;
 using NetworkStatus.Worker.Publisher;
 using NetworkStatus.Worker.Status;
@@ -24,6 +27,10 @@ namespace NetworkStatus.Worker
                         .AddSingleton<IExternalNodesBank, ExternalNodesBank>()
                         .AddSingleton<IPublishClient, PublishClient>()
                         .AddSingleton<IListenerServer, ListenerServer>()
+                        .AddSingleton<IApiClient, ApiClient>()
+                        .AddSingleton<NodeConfiguration>(new NodeConfiguration())
+                        // TODO Factory approach
+                        .AddSingleton(new HttpClient())
                         .AddLogging();
                     
                     // Register Node services

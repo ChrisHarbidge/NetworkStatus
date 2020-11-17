@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using Microsoft.Extensions.DependencyInjection;
+using NetworkStatus.Node.Client;
 using NetworkStatus.Node.Status.Device;
 using NetworkStatus.Node.Status.Device.Cpu;
 using NetworkStatus.Node.Status.Device.MachineName;
@@ -32,7 +33,8 @@ namespace NetworkStatus.Node
                 .AddSingleton<INetworkStatusService, NetworkStatusService>()
                 .AddSingleton<IHardwareStatusService, HardwareStatusService>()
                 .AddSingleton<IHardwareTemperatureService, HardwareTemperatureService>()
-                .AddSingleton<IStorageSpaceService, StorageSpaceService>();
+                .AddSingleton<IStorageSpaceService, StorageSpaceService>()
+                .AddSingleton<IApiClient, ApiClient>();
             
             var isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
