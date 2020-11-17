@@ -7,12 +7,12 @@ namespace NetworkStatus.WebApi.Services
 {
     public interface INodeStatusService
     {
-        Task UpdateNodeStatus(NodeStatusDto nodeStatus);
+        Task UpsertNodeStatus(NodeStatusDto nodeStatus);
 
-        Task AddNodeStatus(NodeStatusDto nodeStatus);
+        Task AddNodeStatus(NodeStatusDto nodeStatusDto);
 
         Task<IEnumerable<NodeStatusResponseDto>> Index();
         Task<NodeStatusResponseDto> Get(int nodeId);
-        bool Exists(int nodeId);
+        bool Exists(string nodeName);
     }
 }

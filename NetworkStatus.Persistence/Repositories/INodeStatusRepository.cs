@@ -10,6 +10,7 @@ namespace NetworkStatus.Persistence.Repositories
         Task<NodeStatus> Get(int nodeId);
         Task AddNodeStatus(NodeStatus status);
 
-        bool NodeStatusExists(int id);
+        bool NodeStatusExists(string nodeName);
+        int GetId(string nodeName);
     }
 }

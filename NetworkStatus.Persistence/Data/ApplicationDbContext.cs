@@ -25,7 +25,8 @@ namespace NetworkStatus.Persistence.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-             // optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=aspnet-NetworkStatus-FE05F8D6-70DF-4548-8C30-DF9503BFCB22;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlite("Filename=database.db");
+            // optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=aspnet-NetworkStatus-FE05F8D6-70DF-4548-8C30-DF9503BFCB22;Trusted_Connection=True;MultipleActiveResultSets=true");
             // optionsBuilder.EnableSensitiveDataLogging();
         }
 

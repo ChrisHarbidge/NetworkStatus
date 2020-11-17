@@ -27,8 +27,7 @@ namespace NetworkStatus.WebApi
             services.AddMvc();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
+                options.UseSqlite("Filename=database.db"), ServiceLifetime.Transient);
 
             services.AddTransient<INodeStatusRepository, NodeStatusRepository>();
             services.AddTransient<IHardwareStatusRepository, HardwareStatusRepository>();

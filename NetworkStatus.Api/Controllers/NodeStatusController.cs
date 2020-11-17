@@ -42,15 +42,10 @@ namespace NetworkStatus.WebApi.Controllers
         }
 
         // PUT: api/NodeStatus/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutNodeStatus(int id, NodeStatusDto nodeStatus)
+        [HttpPut("{nodeName}")]
+        public async Task<IActionResult> PutNodeStatus(string nodeName, NodeStatusDto nodeStatus)
         {
-            if (id != nodeStatus.Id)
-            {
-                return BadRequest();
-            }
-
-            if (!NodeStatusExists(id))
+            if (!NodeStatusExists(nodeName))
             {
                 return NotFound();
             }
@@ -59,7 +54,7 @@ namespace NetworkStatus.WebApi.Controllers
 
             nodeStatus.Network.PrivateIpAddress = remoteIpAddress.MapToIPv4().ToString();
 
-            await _nodeStatusService.UpdateNodeStatus(nodeStatus);
+            await _nodeStatusService.UpsertNodeStatus(nodeStatus);
             
             return new OkResult();
         }
@@ -73,9 +68,9 @@ namespace NetworkStatus.WebApi.Controllers
             return CreatedAtAction("GetNodeStatus", new { id = nodeStatus.Id }, nodeStatus);
         }
 
-        private bool NodeStatusExists(int id)
+        private bool NodeStatusExists(string nodeName)
         {
-            return _nodeStatusService.Exists(id);
+            return _nodeStatusService.Exists(nodeName);
         }
     }
 }

@@ -16,7 +16,6 @@ namespace NetworkStatus.WebApi.Services
         private readonly ILinuxServiceStatusRepository _linuxServiceStatusRepository;
         private readonly INetworkStatusRepository _networkStatusRepository;
         private readonly IStorageStatusRepository _storageStatusRepository;
-
         private readonly IMapper _mapper;
 
         public NodeStatusService(INodeStatusRepository nodeStatusRepository, 
@@ -34,17 +33,15 @@ namespace NetworkStatus.WebApi.Services
             _mapper = mapper;
         }
 
-        public async Task AddNodeStatus(NodeStatusDto nodeStatus)
+        public async Task AddNodeStatus(NodeStatusDto nodeStatusDto)
         {
-            // TODO: Mapping
-
-            throw new NotImplementedException();
-
+            var nodeStatus = _mapper.Map(nodeStatusDto);
+            await _nodeStatusRepository.AddNodeStatus(nodeStatus);
         }
 
-        public bool Exists(int nodeId)
+        public bool Exists(string nodeName)
         {
-            return _nodeStatusRepository.NodeStatusExists(nodeId);
+            return _nodeStatusRepository.NodeStatusExists(nodeName);
         }
 
         public async Task<IEnumerable<NodeStatusResponseDto>> Index()
@@ -52,8 +49,13 @@ namespace NetworkStatus.WebApi.Services
             return (await _nodeStatusRepository.Index()).ToList().Select(_mapper.Map);
         }
 
-        public async Task UpdateNodeStatus(NodeStatusDto nodeStatus)
+        public async Task UpsertNodeStatus(NodeStatusDto nodeStatus)
         {
+            if (!Exists(nodeStatus.NodeName))
+            {
+                await AddNodeStatus(nodeStatus);
+            }
+            
             var dateSent = DateTime.Now;
 
             var hardwareStatus = nodeStatus.HardwareStatus;
@@ -68,7 +70,7 @@ namespace NetworkStatus.WebApi.Services
             var linuxServiceStatuses = nodeStatus.Services.ToList();
             linuxServiceStatuses.ForEach(status => status.DateSent = dateSent);
 
-            var nodeId = nodeStatus.Id;
+            var nodeId = _nodeStatusRepository.GetId(nodeStatus.NodeName);
 
             await Task.WhenAll(
             _hardwareStatusRepository.AddHardwareStatus(_mapper.Map(hardwareStatus), nodeId),

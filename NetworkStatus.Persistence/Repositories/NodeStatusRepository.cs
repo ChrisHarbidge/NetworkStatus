@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -42,9 +43,15 @@ namespace NetworkStatus.Persistence.Repositories
                 .ToListAsync();
         }
 
-        public bool NodeStatusExists(int id)
+        public bool NodeStatusExists(string nodeName)
         {
-            return _context.NodeStatus.Any(e => e.Id == id);
+            return _context.NodeStatus.Any(e => e.NodeName == nodeName);
+        }
+
+        public int GetId(string nodeName)
+        {
+            return _context.NodeStatus.First(node => node.NodeName.Equals(nodeName, StringComparison.OrdinalIgnoreCase))
+                .Id;
         }
     }
 }

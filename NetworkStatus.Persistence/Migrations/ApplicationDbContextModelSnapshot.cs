@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetworkStatus.Persistence.Data;
 
@@ -15,34 +14,31 @@ namespace NetworkStatus.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "3.1.10");
 
             modelBuilder.Entity("NetworkStatus.Persistence.Models.HardwareStatusModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("CpuUsage")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DateSent")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("NodeId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("RamUsage")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("Temperature")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("TotalRam")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -54,101 +50,101 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CpuUsage = 0.580643920498269m,
-                            DateSent = new DateTime(2020, 2, 22, 21, 14, 45, 506, DateTimeKind.Local).AddTicks(3709),
+                            CpuUsage = 0.48329390375097m,
+                            DateSent = new DateTime(2020, 11, 17, 21, 44, 26, 56, DateTimeKind.Local).AddTicks(9701),
                             NodeId = 1,
-                            RamUsage = 0.535151584788762m,
-                            Temperature = 0.32787762551004m,
+                            RamUsage = 0.208852175720433m,
+                            Temperature = 0.2542829621836m,
                             TotalRam = 2147483648m
                         },
                         new
                         {
                             Id = 2,
-                            CpuUsage = 0.197682405448371m,
-                            DateSent = new DateTime(2020, 2, 23, 21, 14, 45, 506, DateTimeKind.Local).AddTicks(4913),
+                            CpuUsage = 0.114092039463153m,
+                            DateSent = new DateTime(2020, 11, 18, 21, 44, 26, 57, DateTimeKind.Local).AddTicks(1523),
                             NodeId = 1,
-                            RamUsage = 0.30649041910958m,
-                            Temperature = 0.136104733746548m,
+                            RamUsage = 0.263363463461103m,
+                            Temperature = 0.32459349060645m,
                             TotalRam = 2147483648m
                         },
                         new
                         {
                             Id = 3,
-                            CpuUsage = 0.354786161498533m,
-                            DateSent = new DateTime(2020, 2, 24, 21, 14, 45, 506, DateTimeKind.Local).AddTicks(4962),
+                            CpuUsage = 0.437905222381421m,
+                            DateSent = new DateTime(2020, 11, 19, 21, 44, 26, 57, DateTimeKind.Local).AddTicks(1586),
                             NodeId = 1,
-                            RamUsage = 0.304546534225599m,
-                            Temperature = 0.796247567420941m,
+                            RamUsage = 0.87183145055167m,
+                            Temperature = 0.670715095787642m,
                             TotalRam = 2147483648m
                         },
                         new
                         {
                             Id = 4,
-                            CpuUsage = 0.444758564440887m,
-                            DateSent = new DateTime(2020, 2, 25, 21, 14, 45, 506, DateTimeKind.Local).AddTicks(4969),
+                            CpuUsage = 0.758213380704733m,
+                            DateSent = new DateTime(2020, 11, 20, 21, 44, 26, 57, DateTimeKind.Local).AddTicks(1594),
                             NodeId = 1,
-                            RamUsage = 0.764379314037216m,
-                            Temperature = 0.350447819731407m,
+                            RamUsage = 0.267879830798078m,
+                            Temperature = 0.641933014449632m,
                             TotalRam = 2147483648m
                         },
                         new
                         {
                             Id = 5,
-                            CpuUsage = 0.241641112250109m,
-                            DateSent = new DateTime(2020, 2, 26, 21, 14, 45, 506, DateTimeKind.Local).AddTicks(4974),
+                            CpuUsage = 0.817963649899682m,
+                            DateSent = new DateTime(2020, 11, 21, 21, 44, 26, 57, DateTimeKind.Local).AddTicks(1602),
                             NodeId = 1,
-                            RamUsage = 0.960343701280814m,
-                            Temperature = 0.426200505544525m,
+                            RamUsage = 0.397608822396774m,
+                            Temperature = 0.613626965141682m,
                             TotalRam = 2147483648m
                         },
                         new
                         {
                             Id = 6,
-                            CpuUsage = 0.452831974929586m,
-                            DateSent = new DateTime(2020, 2, 27, 21, 14, 45, 506, DateTimeKind.Local).AddTicks(4980),
+                            CpuUsage = 0.178433545016886m,
+                            DateSent = new DateTime(2020, 11, 22, 21, 44, 26, 57, DateTimeKind.Local).AddTicks(1608),
                             NodeId = 1,
-                            RamUsage = 0.934128552178912m,
-                            Temperature = 0.154218471215208m,
+                            RamUsage = 0.554328349211406m,
+                            Temperature = 0.103307935457354m,
                             TotalRam = 2147483648m
                         },
                         new
                         {
                             Id = 7,
-                            CpuUsage = 0.0120031316820547m,
-                            DateSent = new DateTime(2020, 2, 28, 21, 14, 45, 506, DateTimeKind.Local).AddTicks(4986),
+                            CpuUsage = 0.995520405469239m,
+                            DateSent = new DateTime(2020, 11, 23, 21, 44, 26, 57, DateTimeKind.Local).AddTicks(1614),
                             NodeId = 1,
-                            RamUsage = 0.658594589987115m,
-                            Temperature = 0.0470323930713499m,
+                            RamUsage = 0.488765093725531m,
+                            Temperature = 0.590631458252031m,
                             TotalRam = 2147483648m
                         },
                         new
                         {
                             Id = 8,
-                            CpuUsage = 0.388998909568879m,
-                            DateSent = new DateTime(2020, 2, 29, 21, 14, 45, 506, DateTimeKind.Local).AddTicks(4991),
+                            CpuUsage = 0.19158198972772m,
+                            DateSent = new DateTime(2020, 11, 24, 21, 44, 26, 57, DateTimeKind.Local).AddTicks(1621),
                             NodeId = 1,
-                            RamUsage = 0.16818913592407m,
-                            Temperature = 0.140272293305151m,
+                            RamUsage = 0.0351200779132173m,
+                            Temperature = 0.441340396851925m,
                             TotalRam = 2147483648m
                         },
                         new
                         {
                             Id = 9,
-                            CpuUsage = 0.149812138709152m,
-                            DateSent = new DateTime(2020, 3, 1, 21, 14, 45, 506, DateTimeKind.Local).AddTicks(4997),
+                            CpuUsage = 0.484966098091084m,
+                            DateSent = new DateTime(2020, 11, 25, 21, 44, 26, 57, DateTimeKind.Local).AddTicks(1627),
                             NodeId = 1,
-                            RamUsage = 0.754422777683671m,
-                            Temperature = 0.0250914478791372m,
+                            RamUsage = 0.387735289236407m,
+                            Temperature = 0.353214876425087m,
                             TotalRam = 2147483648m
                         },
                         new
                         {
                             Id = 10,
-                            CpuUsage = 0.87412453623215m,
-                            DateSent = new DateTime(2020, 3, 2, 21, 14, 45, 506, DateTimeKind.Local).AddTicks(5002),
+                            CpuUsage = 0.6571174592977m,
+                            DateSent = new DateTime(2020, 11, 26, 21, 44, 26, 57, DateTimeKind.Local).AddTicks(1634),
                             NodeId = 1,
-                            RamUsage = 0.664338219288894m,
-                            Temperature = 0.332479488725066m,
+                            RamUsage = 0.457854005255668m,
+                            Temperature = 0.884976789767378m,
                             TotalRam = 2147483648m
                         });
                 });
@@ -157,20 +153,19 @@ namespace NetworkStatus.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateSent")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("IsRunning")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("NodeId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ServiceName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -182,7 +177,7 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            DateSent = new DateTime(2020, 2, 22, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(6339),
+                            DateSent = new DateTime(2020, 11, 17, 21, 44, 26, 61, DateTimeKind.Local).AddTicks(148),
                             IsRunning = true,
                             NodeId = 1,
                             ServiceName = "TestService"
@@ -190,7 +185,7 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            DateSent = new DateTime(2020, 2, 23, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(7471),
+                            DateSent = new DateTime(2020, 11, 18, 21, 44, 26, 61, DateTimeKind.Local).AddTicks(1845),
                             IsRunning = true,
                             NodeId = 1,
                             ServiceName = "TestService"
@@ -198,7 +193,7 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            DateSent = new DateTime(2020, 2, 24, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(7526),
+                            DateSent = new DateTime(2020, 11, 19, 21, 44, 26, 61, DateTimeKind.Local).AddTicks(1912),
                             IsRunning = true,
                             NodeId = 1,
                             ServiceName = "TestService"
@@ -206,7 +201,7 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            DateSent = new DateTime(2020, 2, 25, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(7531),
+                            DateSent = new DateTime(2020, 11, 20, 21, 44, 26, 61, DateTimeKind.Local).AddTicks(1916),
                             IsRunning = true,
                             NodeId = 1,
                             ServiceName = "TestService"
@@ -214,7 +209,7 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 5,
-                            DateSent = new DateTime(2020, 2, 26, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(7535),
+                            DateSent = new DateTime(2020, 11, 21, 21, 44, 26, 61, DateTimeKind.Local).AddTicks(1920),
                             IsRunning = true,
                             NodeId = 1,
                             ServiceName = "TestService"
@@ -222,7 +217,7 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 6,
-                            DateSent = new DateTime(2020, 2, 27, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(7538),
+                            DateSent = new DateTime(2020, 11, 22, 21, 44, 26, 61, DateTimeKind.Local).AddTicks(1923),
                             IsRunning = true,
                             NodeId = 1,
                             ServiceName = "TestService"
@@ -230,7 +225,7 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 7,
-                            DateSent = new DateTime(2020, 2, 28, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(7541),
+                            DateSent = new DateTime(2020, 11, 23, 21, 44, 26, 61, DateTimeKind.Local).AddTicks(1926),
                             IsRunning = true,
                             NodeId = 1,
                             ServiceName = "TestService"
@@ -238,7 +233,7 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 8,
-                            DateSent = new DateTime(2020, 2, 29, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(7545),
+                            DateSent = new DateTime(2020, 11, 24, 21, 44, 26, 61, DateTimeKind.Local).AddTicks(1930),
                             IsRunning = true,
                             NodeId = 1,
                             ServiceName = "TestService"
@@ -246,7 +241,7 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 9,
-                            DateSent = new DateTime(2020, 3, 1, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(7548),
+                            DateSent = new DateTime(2020, 11, 25, 21, 44, 26, 61, DateTimeKind.Local).AddTicks(1933),
                             IsRunning = true,
                             NodeId = 1,
                             ServiceName = "TestService"
@@ -254,7 +249,7 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 10,
-                            DateSent = new DateTime(2020, 3, 2, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(7552),
+                            DateSent = new DateTime(2020, 11, 26, 21, 44, 26, 61, DateTimeKind.Local).AddTicks(1936),
                             IsRunning = true,
                             NodeId = 1,
                             ServiceName = "TestService"
@@ -265,26 +260,25 @@ namespace NetworkStatus.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateSent")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("DownloadSpeed")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("IsVpn")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("NodeId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("PrivateIpAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("PublicIpAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -296,8 +290,8 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            DateSent = new DateTime(2020, 2, 22, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(254),
-                            DownloadSpeed = 0.387793444277622m,
+                            DateSent = new DateTime(2020, 11, 17, 21, 44, 26, 59, DateTimeKind.Local).AddTicks(8458),
+                            DownloadSpeed = 0.987832665903416m,
                             IsVpn = true,
                             NodeId = 1,
                             PrivateIpAddress = "192.168.0.30",
@@ -306,8 +300,8 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            DateSent = new DateTime(2020, 2, 23, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(2206),
-                            DownloadSpeed = 0.714188226831233m,
+                            DateSent = new DateTime(2020, 11, 18, 21, 44, 26, 60, DateTimeKind.Local).AddTicks(1281),
+                            DownloadSpeed = 0.962442633678411m,
                             IsVpn = true,
                             NodeId = 1,
                             PrivateIpAddress = "192.168.0.30",
@@ -316,8 +310,8 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            DateSent = new DateTime(2020, 2, 24, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(2278),
-                            DownloadSpeed = 0.628562714731583m,
+                            DateSent = new DateTime(2020, 11, 19, 21, 44, 26, 60, DateTimeKind.Local).AddTicks(1452),
+                            DownloadSpeed = 0.343362064260692m,
                             IsVpn = true,
                             NodeId = 1,
                             PrivateIpAddress = "192.168.0.30",
@@ -326,8 +320,8 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            DateSent = new DateTime(2020, 2, 25, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(2284),
-                            DownloadSpeed = 0.74022531590435m,
+                            DateSent = new DateTime(2020, 11, 20, 21, 44, 26, 60, DateTimeKind.Local).AddTicks(1459),
+                            DownloadSpeed = 0.478518301843907m,
                             IsVpn = true,
                             NodeId = 1,
                             PrivateIpAddress = "192.168.0.30",
@@ -336,8 +330,8 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 5,
-                            DateSent = new DateTime(2020, 2, 26, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(2289),
-                            DownloadSpeed = 0.287769114266974m,
+                            DateSent = new DateTime(2020, 11, 21, 21, 44, 26, 60, DateTimeKind.Local).AddTicks(1464),
+                            DownloadSpeed = 0.108699596537603m,
                             IsVpn = true,
                             NodeId = 1,
                             PrivateIpAddress = "192.168.0.30",
@@ -346,8 +340,8 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 6,
-                            DateSent = new DateTime(2020, 2, 27, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(2293),
-                            DownloadSpeed = 0.553525684659148m,
+                            DateSent = new DateTime(2020, 11, 22, 21, 44, 26, 60, DateTimeKind.Local).AddTicks(1469),
+                            DownloadSpeed = 0.271638334855269m,
                             IsVpn = true,
                             NodeId = 1,
                             PrivateIpAddress = "192.168.0.30",
@@ -356,8 +350,8 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 7,
-                            DateSent = new DateTime(2020, 2, 28, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(2298),
-                            DownloadSpeed = 0.4848356272489m,
+                            DateSent = new DateTime(2020, 11, 23, 21, 44, 26, 60, DateTimeKind.Local).AddTicks(1535),
+                            DownloadSpeed = 0.91979301484292m,
                             IsVpn = true,
                             NodeId = 1,
                             PrivateIpAddress = "192.168.0.30",
@@ -366,8 +360,8 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 8,
-                            DateSent = new DateTime(2020, 2, 29, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(2302),
-                            DownloadSpeed = 0.967623117364768m,
+                            DateSent = new DateTime(2020, 11, 24, 21, 44, 26, 60, DateTimeKind.Local).AddTicks(1541),
+                            DownloadSpeed = 0.0590821323260116m,
                             IsVpn = true,
                             NodeId = 1,
                             PrivateIpAddress = "192.168.0.30",
@@ -376,8 +370,8 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 9,
-                            DateSent = new DateTime(2020, 3, 1, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(2307),
-                            DownloadSpeed = 0.25221631175476m,
+                            DateSent = new DateTime(2020, 11, 25, 21, 44, 26, 60, DateTimeKind.Local).AddTicks(1546),
+                            DownloadSpeed = 0.654771542947167m,
                             IsVpn = true,
                             NodeId = 1,
                             PrivateIpAddress = "192.168.0.30",
@@ -386,8 +380,8 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 10,
-                            DateSent = new DateTime(2020, 3, 2, 21, 14, 45, 508, DateTimeKind.Local).AddTicks(2312),
-                            DownloadSpeed = 0.356594338247829m,
+                            DateSent = new DateTime(2020, 11, 26, 21, 44, 26, 60, DateTimeKind.Local).AddTicks(1551),
+                            DownloadSpeed = 0.304559786945842m,
                             IsVpn = true,
                             NodeId = 1,
                             PrivateIpAddress = "192.168.0.30",
@@ -399,14 +393,13 @@ namespace NetworkStatus.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("LastPinged")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("NodeName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -416,7 +409,7 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            LastPinged = new DateTime(2020, 2, 22, 21, 14, 45, 501, DateTimeKind.Local).AddTicks(7851),
+                            LastPinged = new DateTime(2020, 11, 17, 21, 44, 26, 45, DateTimeKind.Local).AddTicks(356),
                             NodeName = "Test Node"
                         });
                 });
@@ -425,20 +418,19 @@ namespace NetworkStatus.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateSent")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("NodeId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<long>("TotalStorageSpaceBytes")
-                        .HasColumnType("bigint");
+                        .HasColumnType("INTEGER");
 
                     b.Property<long>("UsedStorageSpaceBytes")
-                        .HasColumnType("bigint");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -450,82 +442,82 @@ namespace NetworkStatus.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            DateSent = new DateTime(2020, 2, 22, 21, 14, 45, 509, DateTimeKind.Local).AddTicks(1834),
+                            DateSent = new DateTime(2020, 11, 17, 21, 44, 26, 61, DateTimeKind.Local).AddTicks(9398),
                             NodeId = 1,
                             TotalStorageSpaceBytes = 10737418240L,
-                            UsedStorageSpaceBytes = 1443218607L
+                            UsedStorageSpaceBytes = 1276009554L
                         },
                         new
                         {
                             Id = 2,
-                            DateSent = new DateTime(2020, 2, 23, 21, 14, 45, 509, DateTimeKind.Local).AddTicks(2894),
+                            DateSent = new DateTime(2020, 11, 18, 21, 44, 26, 62, DateTimeKind.Local).AddTicks(1253),
                             NodeId = 1,
                             TotalStorageSpaceBytes = 10737418240L,
-                            UsedStorageSpaceBytes = 1733173690L
+                            UsedStorageSpaceBytes = 1346047849L
                         },
                         new
                         {
                             Id = 3,
-                            DateSent = new DateTime(2020, 2, 24, 21, 14, 45, 509, DateTimeKind.Local).AddTicks(2937),
+                            DateSent = new DateTime(2020, 11, 19, 21, 44, 26, 62, DateTimeKind.Local).AddTicks(1314),
                             NodeId = 1,
                             TotalStorageSpaceBytes = 10737418240L,
-                            UsedStorageSpaceBytes = 436413020L
+                            UsedStorageSpaceBytes = 1251731990L
                         },
                         new
                         {
                             Id = 4,
-                            DateSent = new DateTime(2020, 2, 25, 21, 14, 45, 509, DateTimeKind.Local).AddTicks(2942),
+                            DateSent = new DateTime(2020, 11, 20, 21, 44, 26, 62, DateTimeKind.Local).AddTicks(1319),
                             NodeId = 1,
                             TotalStorageSpaceBytes = 10737418240L,
-                            UsedStorageSpaceBytes = 616203318L
+                            UsedStorageSpaceBytes = 1914460312L
                         },
                         new
                         {
                             Id = 5,
-                            DateSent = new DateTime(2020, 2, 26, 21, 14, 45, 509, DateTimeKind.Local).AddTicks(2946),
+                            DateSent = new DateTime(2020, 11, 21, 21, 44, 26, 62, DateTimeKind.Local).AddTicks(1322),
                             NodeId = 1,
                             TotalStorageSpaceBytes = 10737418240L,
-                            UsedStorageSpaceBytes = 1028455509L
+                            UsedStorageSpaceBytes = 1075023942L
                         },
                         new
                         {
                             Id = 6,
-                            DateSent = new DateTime(2020, 2, 27, 21, 14, 45, 509, DateTimeKind.Local).AddTicks(2950),
+                            DateSent = new DateTime(2020, 11, 22, 21, 44, 26, 62, DateTimeKind.Local).AddTicks(1325),
                             NodeId = 1,
                             TotalStorageSpaceBytes = 10737418240L,
-                            UsedStorageSpaceBytes = 1061144517L
+                            UsedStorageSpaceBytes = 788242283L
                         },
                         new
                         {
                             Id = 7,
-                            DateSent = new DateTime(2020, 2, 28, 21, 14, 45, 509, DateTimeKind.Local).AddTicks(2953),
+                            DateSent = new DateTime(2020, 11, 23, 21, 44, 26, 62, DateTimeKind.Local).AddTicks(1329),
                             NodeId = 1,
                             TotalStorageSpaceBytes = 10737418240L,
-                            UsedStorageSpaceBytes = 1849638825L
+                            UsedStorageSpaceBytes = 1562396765L
                         },
                         new
                         {
                             Id = 8,
-                            DateSent = new DateTime(2020, 2, 29, 21, 14, 45, 509, DateTimeKind.Local).AddTicks(2957),
+                            DateSent = new DateTime(2020, 11, 24, 21, 44, 26, 62, DateTimeKind.Local).AddTicks(1332),
                             NodeId = 1,
                             TotalStorageSpaceBytes = 10737418240L,
-                            UsedStorageSpaceBytes = 897743775L
+                            UsedStorageSpaceBytes = 670738377L
                         },
                         new
                         {
                             Id = 9,
-                            DateSent = new DateTime(2020, 3, 1, 21, 14, 45, 509, DateTimeKind.Local).AddTicks(2961),
+                            DateSent = new DateTime(2020, 11, 25, 21, 44, 26, 62, DateTimeKind.Local).AddTicks(1335),
                             NodeId = 1,
                             TotalStorageSpaceBytes = 10737418240L,
-                            UsedStorageSpaceBytes = 1544501219L
+                            UsedStorageSpaceBytes = 185897056L
                         },
                         new
                         {
                             Id = 10,
-                            DateSent = new DateTime(2020, 3, 2, 21, 14, 45, 509, DateTimeKind.Local).AddTicks(2964),
+                            DateSent = new DateTime(2020, 11, 26, 21, 44, 26, 62, DateTimeKind.Local).AddTicks(1339),
                             NodeId = 1,
                             TotalStorageSpaceBytes = 10737418240L,
-                            UsedStorageSpaceBytes = 1744199831L
+                            UsedStorageSpaceBytes = 1020361374L
                         });
                 });
 
