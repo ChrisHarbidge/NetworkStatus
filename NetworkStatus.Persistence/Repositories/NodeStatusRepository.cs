@@ -50,7 +50,7 @@ namespace NetworkStatus.Persistence.Repositories
 
         public int GetId(string nodeName)
         {
-            return _context.NodeStatus.First(node => node.NodeName.Equals(nodeName, StringComparison.OrdinalIgnoreCase))
+            return _context.NodeStatus.First(node => node.NodeName.Equals(nodeName))
                 .Id;
         }
     }

@@ -22,9 +22,9 @@ namespace NetworkStatus.WebApi.Controllers.Dashboard
 
         public async Task<IActionResult> Index()
         {
-            var hardwareStatuses = _hardwareStatusRepository.GetHardwareStatusesForNode(1);
-            var networkStatuses = _networkStatusRepository.GetStatusesForNode(1); 
-            var linuxServiceStatuses = _linuxServiceStatusRepository.GetLatestServiceStatusesForNode(1);
+            var hardwareStatuses = _hardwareStatusRepository.GetHardwareStatusesForNode(2);
+            var networkStatuses = _networkStatusRepository.GetStatusesForNode(2); 
+            var linuxServiceStatuses = _linuxServiceStatusRepository.GetLatestServiceStatusesForNode(2);
 
             await Task.WhenAll(hardwareStatuses, networkStatuses,
                 linuxServiceStatuses

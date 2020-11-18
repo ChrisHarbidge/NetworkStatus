@@ -45,11 +45,6 @@ namespace NetworkStatus.WebApi.Controllers
         [HttpPut("{nodeName}")]
         public async Task<IActionResult> PutNodeStatus(string nodeName, NodeStatusDto nodeStatus)
         {
-            if (!NodeStatusExists(nodeName))
-            {
-                return NotFound();
-            }
-
             var remoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress;
 
             nodeStatus.Network.PrivateIpAddress = remoteIpAddress.MapToIPv4().ToString();

@@ -46,8 +46,7 @@ namespace NetworkStatus.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection()
-                .UseRouting()
+            app.UseRouting()
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>
                 {

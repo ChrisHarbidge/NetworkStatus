@@ -19,7 +19,7 @@ namespace NetworkStatus.Worker.Client
     {
         private readonly HttpClient _client;
         // TODO: Port discovery could take place as part of UDP
-        private const string EndpointPath = ":5001/api/NodeStatus/";
+        private const string EndpointPath = ":5000/api/NodeStatus/";
         private readonly ILogger<IApiClient> _logger;
 
         public ApiClient(HttpClient client, ILogger<IApiClient> logger)
@@ -36,7 +36,7 @@ namespace NetworkStatus.Worker.Client
             var fullEndpointPath = EndpointPath + nodeStatus.HardwareStatus.Hostname.Name;
 
             // var urlString = $"https://{serverIp.ToString()}{fullEndpointPath}";
-            var urlString = $"https://127.0.0.1{fullEndpointPath}";
+            var urlString = $"http://127.0.0.1{fullEndpointPath}";
             
             _logger.LogInformation($"Pushing to {urlString}");
 
@@ -46,7 +46,11 @@ namespace NetworkStatus.Worker.Client
 
             var stringContent = new StringContent(JsonConvert.SerializeObject(nodeStatusDto), Encoding.UTF8, "application/json");
 
-            await _client.PutAsync(fullUrl, stringContent);
+            var result = await _client.PutAsync(fullUrl, stringContent);
+
+            var resultContent = await result.Content.ReadAsStringAsync();
+            
+            _logger.LogDebug($"Result: {result.StatusCode} {resultContent}");
         }
     }
 }
